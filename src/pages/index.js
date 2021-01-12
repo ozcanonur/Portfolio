@@ -1,10 +1,23 @@
-import React from "react"
+import React from 'react';
 
-import "../normalize.scss"
-import "../style.scss"
+import Layout from '../components/Layout/Layout';
+import Hero from '../components/Hero/Hero';
+import Skills from '../components/Skills/Skills';
 
-const Home = () => {
-  return <div>fdsfsd</div>
-}
+import classes from './index.module.scss';
 
-export default Home
+import '../normalize.scss';
+import '../style.scss';
+
+const Index = () => {
+  return (
+    <div className={classes.site}>
+      <Layout>
+        <Hero />
+        <Skills />
+      </Layout>
+    </div>
+  );
+};
+
+export default Index;

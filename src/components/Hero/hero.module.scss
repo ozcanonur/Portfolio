@@ -1,0 +1,79 @@
+@import '../../variables.scss';
+
+.section {
+  background-color: $color-blue;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroContainer {
+  // position: absolute;
+  // left: 50%;
+  // top: 50%;
+  // transform: translate(-50%, -50%);
+}
+
+.title {
+  font-size: 10rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.triangleBg {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+
+  width: 0;
+  height: 0;
+  border-left: 30rem solid transparent;
+  border-right: 30rem solid transparent;
+  border-bottom: 45rem solid rgba(17, 27, 32, 0.4);
+
+  // filter: drop-shadow(0 0 15rem $color-blue-dark);
+
+  // box-shadow: 0 5px 10px rgba($color-blue-dark, 0.25), 0 15px 40px rgba($color-blue-dark, 0.35);
+}
+
+.triangle {
+  position: absolute;
+  // position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 25rem;
+}
+
+.downArrow {
+  position: absolute;
+  bottom: 10rem;
+  height: 10rem;
+
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-2rem);
+  }
+
+  70% {
+    transform: translateY(4rem);
+  }
+
+  90% {
+    transform: translateY(1rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

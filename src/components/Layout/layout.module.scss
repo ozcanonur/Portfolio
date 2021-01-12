@@ -1,0 +1,101 @@
+@import '../../variables.scss';
+
+.container {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  width: 8rem;
+  height: 100vh;
+  background-color: $color-blue-dark;
+
+  position: fixed;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  & p {
+    transform: rotate(90deg);
+  }
+
+  &Left {
+    left: 0;
+  }
+
+  &Right {
+    right: 0;
+  }
+}
+
+.content {
+  margin-left: 8rem;
+  height: 100vh;
+  width: calc(100% - 16rem);
+}
+
+.icon {
+  height: 3.5rem;
+  width: 3.5rem;
+
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8rem;
+
+  & > p:first-of-type {
+    margin-bottom: 12rem;
+  }
+
+  & > p {
+    font-size: 2rem;
+    border-bottom: 1px solid $color-pink;
+    width: max-content;
+    cursor: pointer;
+    font-weight: 600;
+  }
+}
+
+.copyright {
+  margin-bottom: 8rem;
+  width: max-content;
+
+  font-size: 1.6rem;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+.socialMedia {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.socialMediaIcon {
+  height: 3.5rem;
+  width: 3.5rem;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.contactMeText {
+  font-size: 2rem;
+  border-bottom: 1px solid $color-pink;
+  width: max-content;
+  cursor: pointer;
+  font-weight: 600;
+}
