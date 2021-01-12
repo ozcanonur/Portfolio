@@ -1,5 +1,10 @@
 import React from "react"
 
-export default function Home() {
-  return <div>Hello world!</div>
+import "../normalize.scss"
+import "../style.scss"
+
+const Home = () => {
+  return <div>fdsfsd</div>
 }
+
+export default Home

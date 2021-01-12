@@ -1,0 +1,69 @@
+@import './variables.scss';
+
+@font-face {
+  font-family: SofiaPro;
+  font-weight: 300;
+  src: url('./assets/fonts/SofiaProLight.woff2');
+}
+
+@font-face {
+  font-family: SofiaPro;
+  font-weight: 400;
+  src: url('./assets/fonts/SofiaProRegular.woff2');
+}
+
+@font-face {
+  font-family: SofiaPro;
+  font-weight: 500;
+  src: url('./assets/fonts/SofiaProMedium.woff2');
+}
+
+@font-face {
+  font-family: SofiaPro;
+  font-weight: 600;
+  src: url('./assets/fonts/SofiaProBold.woff2');
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  height: 100%;
+
+  @media only screen and (max-width: 1200px) {
+    font-size: 55%;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    font-size: 46%;
+  }
+
+  @media only screen and (max-width: 850px) {
+    font-size: 40%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    font-size: 32%;
+  }
+}
+
+body {
+  font-family: 'SofiaPro', sans-serif;
+  font-weight: 400;
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+#___gatsby {
+  height: 100%;
+}
+
+#___gatsby > div {
+  height: 100%;
+}
