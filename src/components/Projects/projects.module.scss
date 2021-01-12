@@ -1,0 +1,145 @@
+@import '../../variables.scss';
+
+.section {
+  background-color: $color-blue;
+  margin-top: 30rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleContainer {
+  background-color: rgba($color-blue-dark, 0.4);
+  border-radius: 50%;
+  width: 25vw;
+  height: 25vw;
+
+  padding: 5rem;
+  box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 5vw;
+  font-weight: 500;
+}
+
+.projectsContainer {
+  margin-top: 30rem;
+  width: 75vw;
+
+  display: flex;
+  flex-direction: column;
+
+  & > div:not(:last-child) {
+    margin-bottom: 20rem;
+  }
+
+  & > div:nth-child(even) {
+    flex-direction: row-reverse;
+
+    & > div:nth-child(2) {
+      align-items: flex-start;
+
+      & > article {
+        text-align: start;
+      }
+
+      & div div {
+        justify-content: flex-start;
+        flex-direction: row-reverse;
+
+        & > p {
+          margin-right: 0;
+          margin-left: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
+.project {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.projectVisual {
+  height: 30vw;
+  width: 30vw;
+  position: relative;
+
+  background-color: rgba($color-blue-dark, 0.4);
+  box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
+  border-radius: 50%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+    background: rgba($color-blue-dark, 0.4);
+    box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
+    -webkit-filter: drop-shadow(-5rem -4rem rgba($color-blue-dark, 1));
+    -moz-filter: drop-shadow(-5rem -4rem rgba($color-blue-dark, 1));
+    -ms-filter: drop-shadow(-5rem -4rem rgba($color-blue-dark, 1));
+    -o-filter: drop-shadow(-5rem -4rem rgba($color-blue-dark, 1));
+    filter: drop-shadow(-6rem -2rem rgba($color-blue-dark, 1));
+  }
+}
+
+.projectImg {
+}
+
+.projectDescriptionContainer {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 35vw;
+}
+
+.projectTitle {
+  font-size: 4vw;
+}
+
+.projectDescription {
+  margin-top: 2rem;
+  text-align: right;
+  color: #7c8898;
+  font-size: 2rem;
+  line-height: 3.5rem;
+}
+
+.projectLinksContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+
+  & > div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.projectLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.projectLinkText {
+  margin-right: 1.4rem;
+  font-size: 2rem;
+  color: $color-pink;
+  border-bottom: 1px solid $color-pink;
+}
+
+.projectLinkIcon {
+  height: 2rem;
+}

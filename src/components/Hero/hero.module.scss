@@ -2,23 +2,29 @@
 
 .section {
   background-color: $color-blue;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // height: 200vh;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // position: relative;
 }
 
-.heroContainer {
-  // position: absolute;
+.titleContainer {
+  position: relative;
+  height: 100vh;
   // left: 50%;
   // top: 50%;
   // transform: translate(-50%, -50%);
 }
 
 .title {
-  font-size: 10rem;
+  font-size: 7vw;
   font-weight: 600;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
 }
 
 .triangleBg {
@@ -29,9 +35,9 @@
 
   width: 0;
   height: 0;
-  border-left: 30rem solid transparent;
-  border-right: 30rem solid transparent;
-  border-bottom: 45rem solid rgba(17, 27, 32, 0.4);
+  border-left: 30vw solid transparent;
+  border-right: 30vw solid transparent;
+  border-bottom: 45vw solid rgba(17, 27, 32, 0.4);
 
   // filter: drop-shadow(0 0 15rem $color-blue-dark);
 
@@ -45,15 +51,78 @@
   top: 50%;
   transform: translate(-50%, -50%);
 
-  height: 25rem;
+  height: 15vw;
 }
 
 .downArrow {
   position: absolute;
-  bottom: 10rem;
-  height: 10rem;
+  bottom: 5%;
+  height: 7rem;
 
-  animation: bounce 2s infinite ease-in-out;
+  animation: bounce 2s infinite;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.introContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rem;
+}
+
+.intro {
+  background-color: rgba($color-blue-dark, 0.4);
+  width: 60vw;
+  box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
+
+  padding: 8rem 10rem;
+  padding-bottom: 6rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.introTitle {
+  text-align: center;
+  font-size: 5vw;
+  font-weight: 600;
+}
+
+.introArticle {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 4rem;
+  line-height: 44px;
+}
+
+.linksContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6rem;
+
+  & > div:not(:last-child) {
+    margin-right: 8rem;
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+}
+
+.linkIcon {
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+.linkText {
+  font-size: 2rem;
+  color: $color-pink;
+  border-bottom: 1px solid $color-pink;
+  cursor: pointer;
 }
 
 @keyframes bounce {
@@ -61,16 +130,24 @@
     transform: translateY(0);
   }
 
+  20% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-30px);
+  }
+
   50% {
-    transform: translateY(-2rem);
+    transform: translateY(0);
   }
 
-  70% {
-    transform: translateY(4rem);
+  60% {
+    transform: translateY(-15px);
   }
 
-  90% {
-    transform: translateY(1rem);
+  80% {
+    transform: translateY(0);
   }
 
   100% {
