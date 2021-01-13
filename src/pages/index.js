@@ -10,6 +10,7 @@ import classes from './index.module.scss';
 
 import '../normalize.scss';
 import '../style.scss';
+import 'aos/dist/aos.css';
 
 const Index = () => {
   return (

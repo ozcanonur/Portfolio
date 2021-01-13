@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
 
 import classes from './contact.module.scss';
 
 const Contact = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
   return (
-    <section className={classes.section} id='contact'>
+    <section className={classes.section} id='contact' data-aos='fade-in'>
       <h1 className={classes.title}>Contact me</h1>
       <div className={classes.contactForm}>
         <div className={classes.topRow}>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
 
 import Triangle from '../../assets/svg/triangle_3d.svg';
 import ArrowDown from '../../assets/svg/arrow_down.svg';
@@ -6,9 +7,22 @@ import GithubIcon from '../../assets/svg/github_icon.svg';
 import LinkedinIcon from '../../assets/svg/linkedin_icon.svg';
 import CVIcon from '../../assets/svg/cv_icon.svg';
 
+import { startWords } from '../../utils';
+
 import classes from './hero.module.scss';
 
 const Hero = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    setTimeout(() => {
+      startWords();
+    }, 2000);
+  }, []);
+
   const redirectToGitHub = () => {
     window.open('https://github.com/ozcanonur', '_blank');
   };
@@ -22,10 +36,20 @@ const Hero = () => {
       <div className={classes.titleContainer}>
         <div className={classes.triangleBg} />
         <img className={classes.triangle} src={Triangle} alt='3d triangle' />
-        <h1 className={classes.title}>Fullstack Developer.</h1>
-        {/* <img className={classes.downArrow} src={ArrowDown} alt='down arrow' /> */}
+        <h1 className={classes.title}>
+          <span className='word' style={{ opacity: 1 }}>
+            Fullstack&nbsp;Developer
+          </span>
+          <span className='word' style={{ opacity: 0 }}>
+            Web&nbsp;Designer
+          </span>
+          <span className='word' style={{ opacity: 0 }}>
+            Bioinformatician
+          </span>
+        </h1>
+        <img className={classes.downArrow} src={ArrowDown} alt='down arrow' />
       </div>
-      <div className={classes.introContainer}>
+      <div className={classes.introContainer} data-aos='fade-in'>
         <div className={classes.intro}>
           <h2 className={classes.introTitle}>Hello, I am Onur</h2>
           <article className={classes.introArticle}>

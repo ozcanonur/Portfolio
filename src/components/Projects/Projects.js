@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
 
 import UrlIcon from '../../assets/svg/url_icon.svg';
 import GitHubIcon from '../../assets/svg/github_icon.svg';
@@ -11,6 +12,13 @@ import heartspaceImg from '../../assets/img/heartspace.png';
 import classes from './projects.module.scss';
 
 const Projects = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
   const projects = [
     {
       title: 'PITDB',
@@ -65,7 +73,7 @@ const Projects = () => {
       </div>
       <div className={classes.projectsContainer}>
         {projects.map(({ title, description, img, githubUrl, websiteUrl }) => (
-          <div key={title} className={classes.project}>
+          <div key={title} className={classes.project} data-aos='fade-in'>
             <div className={classes.projectVisual}>
               <img
                 className={classes.projectImg}

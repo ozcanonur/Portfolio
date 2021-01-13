@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
 
 import ReactIcon from '../../assets/svg/react_icon.svg';
 import ReduxIcon from '../../assets/svg/redux_icon.svg';
@@ -19,6 +20,13 @@ import JestIcon from '../../assets/svg/jest_icon.svg';
 import classes from './skills.module.scss';
 
 const Skills = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
   const leftSkills = [
     {
       icon: ReactIcon,
@@ -96,7 +104,7 @@ const Skills = () => {
   ];
 
   return (
-    <section className={classes.section} id='skills'>
+    <section className={classes.section} id='skills' data-aos='fade-in'>
       <div className={classes.titleContainer}>
         <h1 className={classes.title}>Skills</h1>
       </div>
