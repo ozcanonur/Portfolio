@@ -38,10 +38,10 @@
 .leftSkillsContainer {
   background-color: rgba($color-blue-dark, 0.4);
   box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
-  // filter: drop-shadow(5rem -4rem rgba($color-blue-dark, 1));
 
   width: 28vw;
-  padding: 5rem;
+  padding: 6rem 4rem;
+  padding-top: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -76,7 +76,7 @@
   box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
 
   width: 28vw;
-  padding: 5rem;
+  padding: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -109,7 +109,6 @@
 .leftSkill {
   display: flex;
   align-items: center;
-  transform: rotate(-10deg);
   width: 100%;
 
   & > *:first-child {
@@ -122,7 +121,6 @@
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  transform: rotate(10deg);
 
   & > *:first-child {
     margin-right: 4rem;

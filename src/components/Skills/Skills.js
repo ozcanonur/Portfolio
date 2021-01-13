@@ -102,16 +102,24 @@ const Skills = () => {
       </div>
       <div className={classes.skillsContainer}>
         <div className={classes.leftSkillsContainer}>
-          {leftSkills.map(({ icon, alt, name }) => (
-            <div key={name} className={classes.leftSkill}>
+          {leftSkills.map(({ icon, alt, name }, index) => (
+            <div
+              key={name}
+              className={classes.leftSkill}
+              style={{ transform: `translateX(${index * 16}px) rotate(-10deg)` }}
+            >
               <img className={classes.skillIcon} src={icon} alt={alt} />
               <p className={classes.skillText}>{name}</p>
             </div>
           ))}
         </div>
         <div className={classes.rightSkillsContainer}>
-          {rightSkills.map(({ icon, alt, name }) => (
-            <div key={name} className={classes.rightSkill}>
+          {rightSkills.map(({ icon, alt, name }, index) => (
+            <div
+              key={name}
+              className={classes.rightSkill}
+              style={{ transform: `translateX(-${index * 16}px) rotate(10deg)` }}
+            >
               <p className={classes.skillText}>{name}</p>
               <img className={classes.skillIcon} src={icon} alt={alt} />
             </div>
