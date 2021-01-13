@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 
 import Triangle from '../../assets/svg/triangle_3d.svg';
 import ArrowDown from '../../assets/svg/arrow_down.svg';
 import GithubIcon from '../../assets/svg/github_icon.svg';
 import LinkedinIcon from '../../assets/svg/linkedin_icon.svg';
+import TriangleContainer from '../../assets/svg/triangleContainer.svg';
+import TriangleWithContainer from '../../assets/svg/triangle_3d_with_container.svg';
 import CVIcon from '../../assets/svg/cv_icon.svg';
 
 import { startWords } from '../../utils';
@@ -12,6 +14,8 @@ import { startWords } from '../../utils';
 import classes from './hero.module.scss';
 
 const Hero = () => {
+  const [progressDone, setProgressDone] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -36,11 +40,14 @@ const Hero = () => {
   useEffect(() => {
     if (triangleRef.current) {
       window.addEventListener('scroll', () => {
-        if (window.pageYOffset < 2000) {
+        if (window.pageYOffset < 1900) {
+          setProgressDone(false);
+          triangleRef.current.style.display = 'inherit';
           triangleRef.current.style.position = `fixed`;
           triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${window.pageYOffset / 11}deg)`;
         } else {
-          triangleRef.current.style.position = `absolute`;
+          setProgressDone(true);
+          triangleRef.current.style.display = 'none';
           triangleRef.current.style.transform = `translate(-50%, calc(-50% + 2000px)) rotate(180deg)`;
         }
       });
@@ -93,11 +100,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className={classes.triangleStopContainer}>
-        <hr className={classes.line} />
-        <hr className={classes.line} />
-        <div className={classes.triangleStopBox} />
-      </div>
+      {progressDone ? (
+        <img className={classes.triangleContainer} src={TriangleWithContainer} alt='triangle with container' />
+      ) : (
+        <img className={classes.triangleContainer} src={TriangleContainer} alt='triangle container' />
+      )}
     </section>
   );
 };
