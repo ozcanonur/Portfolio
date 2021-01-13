@@ -9,8 +9,16 @@ import CVIcon from '../../assets/svg/cv_icon.svg';
 import classes from './hero.module.scss';
 
 const Hero = () => {
+  const redirectToGitHub = () => {
+    window.open('https://github.com/ozcanonur', '_blank');
+  };
+
+  const redirectToLinkedin = () => {
+    window.open('https://www.linkedin.com/in/onur-ozcan-a5329b76/', '_blank');
+  };
+
   return (
-    <section className={classes.section}>
+    <section className={classes.section} id='hero'>
       <div className={classes.titleContainer}>
         <div className={classes.triangleBg} />
         <img className={classes.triangle} src={Triangle} alt='3d triangle' />
@@ -28,11 +36,15 @@ const Hero = () => {
           <div className={classes.linksContainer}>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={GithubIcon} alt='github link' />
-              <p className={classes.linkText}>GitHub</p>
+              <p className={classes.linkText} onClick={redirectToGitHub}>
+                GitHub
+              </p>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={LinkedinIcon} alt='linkedIn link' />
-              <p className={classes.linkText}>LinkedIn</p>
+              <p className={classes.linkText} onClick={redirectToLinkedin}>
+                LinkedIn
+              </p>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={CVIcon} alt='cv link' />

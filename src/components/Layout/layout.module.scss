@@ -35,7 +35,6 @@
 
 .content {
   margin-left: 8rem;
-  // height: 100vh;
   width: calc(100% - 16rem);
 }
 
@@ -45,6 +44,13 @@
 
   margin-top: 2rem;
   cursor: pointer;
+
+  opacity: 0.8;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .linksContainer {
@@ -63,6 +69,13 @@
     width: max-content;
     cursor: pointer;
     font-weight: 600;
+
+    opacity: 0.8;
+    transition: all 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
@@ -90,6 +103,11 @@
   width: 3.5rem;
   opacity: 0.6;
   cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .contactMeText {
@@ -98,4 +116,11 @@
   width: max-content;
   cursor: pointer;
   font-weight: 600;
+
+  opacity: 0.8;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
 }

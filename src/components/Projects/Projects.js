@@ -20,6 +20,8 @@ const Projects = () => {
               repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
               veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
       img: pitdbImg,
+      websiteUrl: 'http://pitdb.herokuapp.com/',
+      githubUrl: 'https://github.com/ozcanonur/PITDB',
     },
     {
       title: 'Chemphoprolog',
@@ -29,6 +31,8 @@ const Projects = () => {
               repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
               veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
       img: chemphoprologImg,
+      websiteUrl: 'http://chemphoprolog.herokuapp.com/',
+      githubUrl: 'https://github.com/ozcanonur/chemphoprolog',
     },
     {
       title: 'Discord',
@@ -38,6 +42,8 @@ const Projects = () => {
               repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
               veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
       img: discordImg,
+      websiteUrl: 'http://ozcanonur-discord.herokuapp.com/',
+      githubUrl: 'https://github.com/ozcanonur/discord-clone',
     },
     {
       title: 'Heartspace',
@@ -47,16 +53,18 @@ const Projects = () => {
               repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
               veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
       img: heartspaceImg,
+      websiteUrl: 'https://www.findheartspace.com/',
+      githubUrl: 'https://github.com/ozcanonur/Heartspace',
     },
   ];
 
   return (
-    <section className={classes.section}>
+    <section className={classes.section} id='projects'>
       <div className={classes.titleContainer}>
         <h1 className={classes.title}>Projects</h1>
       </div>
       <div className={classes.projectsContainer}>
-        {projects.map(({ title, description, img }) => (
+        {projects.map(({ title, description, img, githubUrl, websiteUrl }) => (
           <div key={title} className={classes.project}>
             <div className={classes.projectVisual}>
               <img
@@ -71,11 +79,25 @@ const Projects = () => {
               <article className={classes.projectDescription}>{description}</article>
               <div className={classes.projectLinksContainer}>
                 <div className={classes.projectLink}>
-                  <p className={classes.projectLinkText}>View website</p>
+                  <p
+                    className={classes.projectLinkText}
+                    onClick={() => {
+                      window.open(websiteUrl, '_blank');
+                    }}
+                  >
+                    View website
+                  </p>
                   <img className={classes.projectLinkIcon} src={UrlIcon} alt='view pitdb website' />
                 </div>
                 <div className={classes.projectLink}>
-                  <p className={classes.projectLinkText}>View source</p>
+                  <p
+                    className={classes.projectLinkText}
+                    onClick={() => {
+                      window.open(githubUrl, '_blank');
+                    }}
+                  >
+                    View source
+                  </p>
                   <img className={classes.projectLinkIcon} src={GitHubIcon} alt='view pitdb source' />
                 </div>
               </div>

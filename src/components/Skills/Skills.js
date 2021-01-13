@@ -96,7 +96,7 @@ const Skills = () => {
   ];
 
   return (
-    <section className={classes.section}>
+    <section className={classes.section} id='skills'>
       <div className={classes.titleContainer}>
         <h1 className={classes.title}>Skills</h1>
       </div>
