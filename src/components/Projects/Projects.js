@@ -66,6 +66,10 @@ const Projects = () => {
     },
   ];
 
+  const redirectToGitHub = () => {
+    window.open('https://github.com/ozcanonur', '_blank');
+  };
+
   return (
     <section className={classes.section} id='projects'>
       <div className={classes.titleContainer}>
@@ -114,7 +118,7 @@ const Projects = () => {
         ))}
       </div>
       <div className={classes.projectsFooter}>
-        <p>And more on GitHub</p>
+        <p onClick={redirectToGitHub}>And more on GitHub</p>
         <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
       </div>
     </section>

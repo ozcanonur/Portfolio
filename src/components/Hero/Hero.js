@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import AOS from 'aos';
 
 import Triangle from '../../assets/svg/triangle_3d.svg';
@@ -31,11 +31,27 @@ const Hero = () => {
     window.open('https://www.linkedin.com/in/onur-ozcan-a5329b76/', '_blank');
   };
 
+  const triangleRef = useRef(null);
+
+  useEffect(() => {
+    if (triangleRef.current) {
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset < 2000) {
+          triangleRef.current.style.position = `fixed`;
+          triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${window.pageYOffset / 11}deg)`;
+        } else {
+          triangleRef.current.style.position = `absolute`;
+          triangleRef.current.style.transform = `translate(-50%, calc(-50% + 2000px)) rotate(180deg)`;
+        }
+      });
+    }
+  }, [triangleRef.current]);
+
   return (
     <section className={classes.section} id='hero'>
       <div className={classes.titleContainer}>
         <div className={classes.triangleBg} />
-        <img className={classes.triangle} src={Triangle} alt='3d triangle' />
+        <img className={classes.triangle} src={Triangle} alt='3d triangle' ref={triangleRef} />
         <h1 className={classes.title}>
           <span className='word' style={{ opacity: 1 }}>
             Fullstack&nbsp;Developer
@@ -76,6 +92,11 @@ const Hero = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={classes.triangleStopContainer}>
+        <hr className={classes.line} />
+        <hr className={classes.line} />
+        <div className={classes.triangleStopBox} />
       </div>
     </section>
   );

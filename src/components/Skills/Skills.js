@@ -129,7 +129,12 @@ const Skills = () => {
               style={{ transform: `translateX(-${index * 16}px) rotate(10deg)` }}
             >
               <p className={classes.skillText}>{name}</p>
-              <img className={classes.skillIcon} src={icon} alt={alt} />
+              <img
+                className={classes.skillIcon}
+                src={icon}
+                alt={alt}
+                style={{ transform: ['Node.js', 'Docker', 'MongoDB'].includes(name) ? 'scale(1.3)' : 'none' }}
+              />
             </div>
           ))}
         </div>

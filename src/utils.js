@@ -18,16 +18,13 @@ export function startWords() {
     changeWord();
     clearInterval(wordInterval);
     wordInterval = setInterval(changeWord, 4000);
-  } catch (error) {
-    // Ruh-roh - there are no wordz
-    // No worries
-  }
+  } catch (error) {}
 }
 
 function changeWord() {
   var cw = wordArray[currentWord];
-  var nw = currentWord == words.length - 1 ? wordArray[0] : wordArray[currentWord + 1];
-  for (var i = 0; i < cw.length; i++) {
+  var nw = currentWord === words.length - 1 ? wordArray[0] : wordArray[currentWord + 1];
+  for (let i = 0; i < cw.length; i++) {
     animateLetterOut(cw, i);
   }
 
@@ -37,7 +34,7 @@ function changeWord() {
     animateLetterIn(nw, i);
   }
 
-  currentWord = currentWord == wordArray.length - 1 ? 0 : currentWord + 1;
+  currentWord = currentWord === wordArray.length - 1 ? 0 : currentWord + 1;
 }
 
 function animateLetterOut(cw, i) {
