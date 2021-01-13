@@ -1,0 +1,97 @@
+@import '../../variables.scss';
+
+.section {
+  margin-top: 30rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 20rem;
+}
+
+.title {
+  font-size: 5vw;
+  font-weight: 500;
+}
+
+.contactForm {
+  width: 75vw;
+  margin-top: 10rem;
+  background-color: rgba($color-blue-dark, 0.4);
+  padding: 8rem;
+  box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nameContainer {
+  font-size: 2rem;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin-right: 6rem;
+}
+
+.emailContainer {
+  font-size: 2rem;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.nameInput {
+  margin-top: 1.4rem;
+  background-color: $color-blue-dark-2;
+  box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.4);
+  border: none;
+  font-size: 2rem;
+  outline: none;
+  color: white;
+  padding: 2rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.emailInput {
+  margin-top: 1.4rem;
+  background-color: $color-blue-dark-2;
+  box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.4);
+  border: none;
+  font-size: 2rem;
+  color: white;
+  outline: none;
+  padding: 2rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.messageContainer {
+  font-size: 2rem;
+  margin-top: 4rem;
+}
+
+.messageInput {
+  margin-top: 1.4rem;
+  background-color: $color-blue-dark-2;
+  box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.4);
+  border: none;
+  font-size: 3rem;
+  color: white;
+  outline: none;
+  padding: 1rem;
+  width: 100%;
+  height: 20rem;
+  border-radius: 5px;
+  resize: none;
+}
+
+.sendMessage {
+  font-size: 2rem;
+  color: $color-pink;
+  margin-top: 3rem;
+  border-bottom: 1px solid $color-pink;
+  width: max-content;
+  cursor: pointer;
+}

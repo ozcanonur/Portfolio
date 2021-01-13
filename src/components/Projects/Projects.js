@@ -83,6 +83,10 @@ const Projects = () => {
           </div>
         ))}
       </div>
+      <div className={classes.projectsFooter}>
+        <p>And more on GitHub</p>
+        <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
+      </div>
     </section>
   );
 };
