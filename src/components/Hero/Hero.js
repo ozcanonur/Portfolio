@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
+import { Portal } from 'react-portal';
 
 import Triangle from '../../assets/svg/triangle_3d.svg';
 import ArrowDown from '../../assets/svg/arrow_down.svg';
@@ -40,7 +41,7 @@ const Hero = () => {
   useEffect(() => {
     if (triangleRef.current) {
       window.addEventListener('scroll', () => {
-        if (window.pageYOffset < 1900) {
+        if (window.pageYOffset < 1950) {
           setProgressDone(false);
           triangleRef.current.style.display = 'inherit';
           triangleRef.current.style.position = `fixed`;
@@ -100,11 +101,13 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      {progressDone ? (
-        <img className={classes.triangleContainer} src={TriangleWithContainer} alt='triangle with container' />
-      ) : (
-        <img className={classes.triangleContainer} src={TriangleContainer} alt='triangle container' />
-      )}
+      <Portal>
+        {progressDone ? (
+          <img className={classes.triangleContainer} src={TriangleWithContainer} alt='triangle with container' />
+        ) : (
+          <img className={classes.triangleContainer} src={TriangleContainer} alt='triangle container' />
+        )}
+      </Portal>
     </section>
   );
 };

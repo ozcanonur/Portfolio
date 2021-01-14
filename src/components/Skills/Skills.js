@@ -1,5 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
+import { Portal } from 'react-portal';
+
+import Cube from '../../assets/svg/cube_3d.svg';
+import CubeContainer from '../../assets/svg/cube_container.svg';
+import CubeWithContainer from '../../assets/svg/cube_with_container.svg';
 
 import ReactIcon from '../../assets/svg/react_icon.svg';
 import ReduxIcon from '../../assets/svg/redux_icon.svg';
@@ -20,6 +25,8 @@ import JestIcon from '../../assets/svg/jest_icon.svg';
 import classes from './skills.module.scss';
 
 const Skills = () => {
+  const [progressDone, setProgressDone] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -103,10 +110,40 @@ const Skills = () => {
     },
   ];
 
+  const cubeRef = useRef(null);
+
+  useEffect(() => {
+    if (cubeRef.current) {
+      window.addEventListener('scroll', () => {
+        console.log(window.pageYOffset);
+        const yOffsetToSectionStart = window.pageYOffset - 2400;
+        if (window.pageYOffset <= 2400) {
+          setProgressDone(false);
+          cubeRef.current.style.display = 'inherit';
+          cubeRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
+        } else if (window.pageYOffset > 2400 && window.pageYOffset < 3900) {
+          setProgressDone(false);
+          cubeRef.current.style.display = 'inherit';
+          cubeRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
+            yOffsetToSectionStart / 4.2
+          }deg)`;
+        } else {
+          setProgressDone(true);
+          cubeRef.current.style.display = 'none';
+        }
+      });
+    }
+  }, [cubeRef.current]);
+
+  console.log(progressDone);
+
   return (
     <section className={classes.section} id='skills' data-aos='fade-in'>
-      <div className={classes.titleContainer}>
-        <h1 className={classes.title}>Skills</h1>
+      <div style={{ position: 'relative' }}>
+        <div className={classes.titleContainer}>
+          <h1 className={classes.title}>Skills</h1>
+        </div>
+        <img className={classes.cube} src={Cube} alt='cube' ref={cubeRef} />
       </div>
       <div className={classes.skillsContainer}>
         <div className={classes.leftSkillsContainer}>
@@ -139,6 +176,13 @@ const Skills = () => {
           ))}
         </div>
       </div>
+      <Portal>
+        {progressDone ? (
+          <img className={classes.cubeContainer} src={CubeWithContainer} alt='cube with container' />
+        ) : (
+          <img className={classes.cubeContainer} src={CubeContainer} alt='cube container' />
+        )}
+      </Portal>
     </section>
   );
 };

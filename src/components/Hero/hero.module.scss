@@ -117,61 +117,10 @@
 }
 
 .triangleContainer {
-  margin-top: 340px;
-  transition: all 0.15s;
-  // position: absolute;
+  // margin-top: 340px;
+  position: absolute;
+  top: 2450px;
 }
-
-// .triangleStopContainer {
-//   margin-top: 341px;
-//   position: relative;
-// }
-
-// .line {
-//   margin-top: 1rem;
-//   background: linear-gradient(
-//     to right,
-//     $color-pink 37.3%,
-//     $color-transparent 37.3%,
-//     $color-transparent 62.8%,
-//     $color-pink 62.8%,
-//     $color-pink
-//   );
-//   height: 1px;
-//   border: none;
-// }
-
-// .triangleStopBox {
-//   transform: translate(-50%, -50%) rotate(180deg);
-//   position: absolute;
-//   left: 50%;
-//   top: 50%;
-//   margin-top: 6px;
-
-//   width: 0;
-//   height: 0;
-//   border-left: 1px solid transparent;
-//   position: relative;
-
-//   &,
-//   &::before {
-//     display: block;
-//     border-right: 1px solid transparent;
-//   }
-
-//   &::after {
-//     content: '';
-//     position: absolute;
-//     width: 20vw;
-//     height: 20vw;
-//     border-left: 1px solid $color-pink;
-//     border-top: 1px solid $color-pink;
-//     border-bottom: 1px solid transparent;
-//     transform: rotate(45deg) skew(10deg, 10deg);
-//     top: -9.7vw;
-//     left: -10vw;
-//   }
-// }
 
 @keyframes bounce {
   0% {
