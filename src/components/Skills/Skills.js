@@ -115,13 +115,13 @@ const Skills = () => {
   useEffect(() => {
     if (!cubeRef.current) return;
 
-    window.addEventListener('scroll', () => {
+    const moveCube = () => {
       const yOffsetToSectionStart = window.pageYOffset - 2400;
       if (window.pageYOffset <= 2400) {
         setProgressDone(false);
         cubeRef.current.style.display = 'inherit';
         cubeRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-      } else if (window.pageYOffset > 2400 && window.pageYOffset < 3900) {
+      } else if (window.pageYOffset > 2400 && window.pageYOffset < 3920) {
         setProgressDone(false);
         cubeRef.current.style.display = 'inherit';
         cubeRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
@@ -131,8 +131,14 @@ const Skills = () => {
         setProgressDone(true);
         cubeRef.current.style.display = 'none';
       }
-    });
-  }, [cubeRef.current]);
+    };
+
+    window.addEventListener('scroll', moveCube);
+
+    return () => {
+      window.removeEventListener('scroll', moveCube);
+    };
+  }, []);
 
   return (
     <section className={classes.section} id='skills' data-aos='fade-in'>

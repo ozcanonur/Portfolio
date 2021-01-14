@@ -80,28 +80,34 @@ const Projects = () => {
   const sphereRef = useRef(null);
 
   useEffect(() => {
-    if (sphereRef.current) {
-      window.addEventListener('scroll', () => {
-        const yOffsetToSectionStart = window.pageYOffset - 4400;
-        if (window.pageYOffset <= 4400) {
-          setProgressDone(false);
-          sphereRef.current.style.display = 'inherit';
-          sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-          sphereRef.current.style.opacity = 1;
-        } else if (window.pageYOffset > 4400 && window.pageYOffset < 8500) {
-          setProgressDone(false);
-          sphereRef.current.style.display = 'inherit';
-          sphereRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
-            yOffsetToSectionStart / 3.81
-          }deg)`;
-          sphereRef.current.style.opacity = 0.7;
-        } else {
-          setProgressDone(true);
-          sphereRef.current.style.display = 'none';
-        }
-      });
-    }
-  }, [sphereRef.current]);
+    if (!sphereRef.current) return;
+
+    const moveSphere = () => {
+      const yOffsetToSectionStart = window.pageYOffset - 4400;
+      if (window.pageYOffset <= 4400) {
+        setProgressDone(false);
+        sphereRef.current.style.display = 'inherit';
+        sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
+        sphereRef.current.style.opacity = 1;
+      } else if (window.pageYOffset > 4400 && window.pageYOffset < 8520) {
+        setProgressDone(false);
+        sphereRef.current.style.display = 'inherit';
+        sphereRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
+          yOffsetToSectionStart / 3.81
+        }deg)`;
+        sphereRef.current.style.opacity = 0.7;
+      } else {
+        setProgressDone(true);
+        sphereRef.current.style.display = 'none';
+      }
+    };
+
+    window.addEventListener('scroll', moveSphere);
+
+    return () => {
+      window.removeEventListener('scroll', moveSphere);
+    };
+  }, []);
 
   return (
     <section className={classes.section} id='projects'>

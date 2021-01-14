@@ -41,7 +41,7 @@ const Hero = () => {
   useEffect(() => {
     if (!triangleRef.current) return;
 
-    window.addEventListener('scroll', () => {
+    const moveTriangle = () => {
       if (window.pageYOffset < 1950) {
         setProgressDone(false);
         triangleRef.current.style.display = 'inherit';
@@ -52,8 +52,14 @@ const Hero = () => {
         triangleRef.current.style.display = 'none';
         triangleRef.current.style.transform = `translate(-50%, calc(-50% + 2000px)) rotate(180deg)`;
       }
-    });
-  }, [triangleRef.current]);
+    };
+
+    window.addEventListener('scroll', moveTriangle);
+
+    return () => {
+      window.removeEventListener('scroll', moveTriangle);
+    };
+  }, []);
 
   return (
     <section className={classes.section} id='hero'>
