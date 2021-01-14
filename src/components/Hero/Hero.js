@@ -39,20 +39,20 @@ const Hero = () => {
   const triangleRef = useRef(null);
 
   useEffect(() => {
-    if (triangleRef.current) {
-      window.addEventListener('scroll', () => {
-        if (window.pageYOffset < 1950) {
-          setProgressDone(false);
-          triangleRef.current.style.display = 'inherit';
-          triangleRef.current.style.position = `fixed`;
-          triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${window.pageYOffset / 11}deg)`;
-        } else {
-          setProgressDone(true);
-          triangleRef.current.style.display = 'none';
-          triangleRef.current.style.transform = `translate(-50%, calc(-50% + 2000px)) rotate(180deg)`;
-        }
-      });
-    }
+    if (!triangleRef.current) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset < 1950) {
+        setProgressDone(false);
+        triangleRef.current.style.display = 'inherit';
+        triangleRef.current.style.position = `fixed`;
+        triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${window.pageYOffset / 11}deg)`;
+      } else {
+        setProgressDone(true);
+        triangleRef.current.style.display = 'none';
+        triangleRef.current.style.transform = `translate(-50%, calc(-50% + 2000px)) rotate(180deg)`;
+      }
+    });
   }, [triangleRef.current]);
 
   return (

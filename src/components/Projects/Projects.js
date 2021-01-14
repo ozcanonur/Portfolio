@@ -1,5 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
+import { Portal } from 'react-portal';
+
+import Sphere from '../../assets/svg/sphere.svg';
+import SphereContainer from '../../assets/svg/sphere_container.svg';
+import SphereWithContainer from '../../assets/svg/sphere_with_container.svg';
 
 import UrlIcon from '../../assets/svg/url_icon.svg';
 import GitHubIcon from '../../assets/svg/github_icon.svg';
@@ -12,6 +17,8 @@ import heartspaceImg from '../../assets/img/heartspace.png';
 import classes from './projects.module.scss';
 
 const Projects = () => {
+  const [progressDone, setProgressDone] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -70,10 +77,39 @@ const Projects = () => {
     window.open('https://github.com/ozcanonur', '_blank');
   };
 
+  const sphereRef = useRef(null);
+
+  useEffect(() => {
+    if (sphereRef.current) {
+      window.addEventListener('scroll', () => {
+        const yOffsetToSectionStart = window.pageYOffset - 4400;
+        if (window.pageYOffset <= 4400) {
+          setProgressDone(false);
+          sphereRef.current.style.display = 'inherit';
+          sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
+          sphereRef.current.style.opacity = 1;
+        } else if (window.pageYOffset > 4400 && window.pageYOffset < 8500) {
+          setProgressDone(false);
+          sphereRef.current.style.display = 'inherit';
+          sphereRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
+            yOffsetToSectionStart / 3.81
+          }deg)`;
+          sphereRef.current.style.opacity = 0.7;
+        } else {
+          setProgressDone(true);
+          sphereRef.current.style.display = 'none';
+        }
+      });
+    }
+  }, [sphereRef.current]);
+
   return (
     <section className={classes.section} id='projects'>
-      <div className={classes.titleContainer}>
-        <h1 className={classes.title}>Projects</h1>
+      <div style={{ position: 'relative' }}>
+        <div className={classes.titleContainer}>
+          <h1 className={classes.title}>Projects</h1>
+          <img className={classes.sphere} src={Sphere} alt='sphere' ref={sphereRef} />
+        </div>
       </div>
       <div className={classes.projectsContainer}>
         {projects.map(({ title, description, img, githubUrl, websiteUrl }) => (
@@ -121,6 +157,13 @@ const Projects = () => {
         <p onClick={redirectToGitHub}>And more on GitHub</p>
         <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
       </div>
+      <Portal>
+        {progressDone ? (
+          <img className={classes.sphereWithContainer} src={SphereWithContainer} alt='sphere with container' />
+        ) : (
+          <img className={classes.sphereContainer} src={SphereContainer} alt='sphere container' />
+        )}
+      </Portal>
     </section>
   );
 };

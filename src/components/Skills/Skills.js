@@ -113,29 +113,26 @@ const Skills = () => {
   const cubeRef = useRef(null);
 
   useEffect(() => {
-    if (cubeRef.current) {
-      window.addEventListener('scroll', () => {
-        console.log(window.pageYOffset);
-        const yOffsetToSectionStart = window.pageYOffset - 2400;
-        if (window.pageYOffset <= 2400) {
-          setProgressDone(false);
-          cubeRef.current.style.display = 'inherit';
-          cubeRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-        } else if (window.pageYOffset > 2400 && window.pageYOffset < 3900) {
-          setProgressDone(false);
-          cubeRef.current.style.display = 'inherit';
-          cubeRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
-            yOffsetToSectionStart / 4.2
-          }deg)`;
-        } else {
-          setProgressDone(true);
-          cubeRef.current.style.display = 'none';
-        }
-      });
-    }
-  }, [cubeRef.current]);
+    if (!cubeRef.current) return;
 
-  console.log(progressDone);
+    window.addEventListener('scroll', () => {
+      const yOffsetToSectionStart = window.pageYOffset - 2400;
+      if (window.pageYOffset <= 2400) {
+        setProgressDone(false);
+        cubeRef.current.style.display = 'inherit';
+        cubeRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
+      } else if (window.pageYOffset > 2400 && window.pageYOffset < 3900) {
+        setProgressDone(false);
+        cubeRef.current.style.display = 'inherit';
+        cubeRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
+          yOffsetToSectionStart / 4.2
+        }deg)`;
+      } else {
+        setProgressDone(true);
+        cubeRef.current.style.display = 'none';
+      }
+    });
+  }, [cubeRef.current]);
 
   return (
     <section className={classes.section} id='skills' data-aos='fade-in'>

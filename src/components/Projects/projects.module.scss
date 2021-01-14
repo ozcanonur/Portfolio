@@ -21,11 +21,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  z-index: 9999;
 }
 
 .title {
   font-size: 5vw;
   font-weight: 500;
+}
+
+.sphere {
+  position: absolute;
+  height: 18vw;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: -1;
 }
 
 .projectsContainer {
@@ -93,6 +107,9 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  position: relative;
+  z-index: 9999;
 }
 
 .projectVisual {
@@ -166,7 +183,7 @@
   display: flex;
   align-items: center;
 
-  margin-top: 20rem;
+  margin-top: 150px;
   width: max-content;
 
   font-size: 4vw;
@@ -177,4 +194,14 @@
 .footerGitHub {
   height: 3vw;
   margin-left: 2rem;
+}
+
+.sphereContainer {
+  position: absolute;
+  top: 9150px;
+}
+
+.sphereWithContainer {
+  position: absolute;
+  top: 9050px;
 }
