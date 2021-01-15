@@ -165,10 +165,10 @@ const Skills = () => {
           alignItems: 'center',
         }}
       >
+        <img className={classes.cube} src={Cube} alt='cube' ref={cubeRef} />
         <div className={classes.titleContainer}>
           <h1 className={classes.title}>Skills</h1>
         </div>
-        <img className={classes.cube} src={Cube} alt='cube' ref={cubeRef} />
       </div>
       <div className={classes.skillsContainer}>
         <div className={classes.skills}>

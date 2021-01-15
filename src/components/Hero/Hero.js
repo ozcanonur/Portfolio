@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import { useMediaQuery } from 'react-responsive';
 import scrollTo from 'gatsby-plugin-smoothscroll';
+import { Portal } from 'react-portal';
 
 import Triangle from '../../assets/svg/triangle_3d.svg';
 import ArrowDown from '../../assets/svg/arrow_down.svg';
@@ -12,6 +13,8 @@ import TriangleWithContainer from '../../assets/svg/triangle_3d_with_container.s
 import CVIcon from '../../assets/svg/cv_icon.svg';
 import DiagonalLines from '../../assets/svg/diagonal_lines.svg';
 import HomeIcon from '../../assets/svg/home.svg';
+import MenuIcon from '../../assets/svg/menu_icon.svg';
+import CancelIcon from '../../assets/svg/cancel.svg';
 
 import { useWindowSize, startWords } from '../../utils';
 
@@ -19,6 +22,7 @@ import classes from './hero.module.scss';
 
 const Hero = () => {
   const [progressDone, setProgressDone] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const windowSize = useWindowSize();
   const deviceIsBelow800Width = useMediaQuery({ query: '(max-width: 800px)' });
@@ -69,15 +73,35 @@ const Hero = () => {
     };
   }, [windowSize]);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   const scrollToHero = () => {
     scrollTo('#hero');
   };
 
+  const scrollToSkills = () => {
+    scrollTo('#skills');
+    setMobileMenuOpen(false);
+  };
+
+  const scrollToProjects = () => {
+    scrollTo('#projects');
+    setMobileMenuOpen(false);
+  };
+
+  const scrollToContact = () => {
+    scrollTo('#contact');
+    setMobileMenuOpen(false);
+  };
+
+  console.log(mobileMenuOpen);
   return (
     <section className={classes.section} id='hero'>
       {deviceIsBelow800Width ? (
-        <div className={classes.homeIconContainer}>
-          <img className={classes.homeIcon} src={HomeIcon} alt='home' onClick={scrollToHero} />
+        <div className={classes.homeIconContainer} onClick={scrollToHero}>
+          <img className={classes.homeIcon} src={HomeIcon} alt='home' />
         </div>
       ) : null}
       <div className={classes.titleContainer}>
@@ -88,7 +112,6 @@ const Hero = () => {
             <img className={classes.socialMediaIcon} src={LinkedinIcon} alt='linkedin link' onClick={redirectToLinkedin} />
           </div>
         ) : null}
-
         <div className={classes.triangleBg} />
         <img className={classes.triangle} src={Triangle} alt='3d triangle' ref={triangleRef} />
         <h1 className={classes.title}>
@@ -142,6 +165,46 @@ const Hero = () => {
       ) : (
         <img className={classes.diagonalLines} src={DiagonalLines} alt='section seperator lines' />
       )}
+      {deviceIsBelow800Width ? (
+        <>
+          <div className={classes.mobileMenuContainer} onClick={toggleMobileMenu}>
+            {mobileMenuOpen ? (
+              <img className={classes.menuIcon} src={CancelIcon} alt='close menu' />
+            ) : (
+              <img className={classes.menuIcon} src={MenuIcon} alt='menu' />
+            )}
+          </div>
+          <Portal>
+            <nav
+              className={classes.mobileNavContainer}
+              style={{
+                width: mobileMenuOpen ? '100%' : '0',
+                opacity: mobileMenuOpen ? 1 : 0,
+              }}
+            >
+              <div className={classes.navTitle}>Navigation</div>
+              <div
+                className={classes.mobileNavItem}
+                onClick={() => {
+                  scrollToHero();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Home
+              </div>
+              <div className={classes.mobileNavItem} onClick={scrollToSkills}>
+                Skills
+              </div>
+              <div className={classes.mobileNavItem} onClick={scrollToProjects}>
+                Projects
+              </div>
+              <div className={classes.mobileNavItem} onClick={scrollToContact}>
+                Contact me
+              </div>
+            </nav>
+          </Portal>
+        </>
+      ) : null}
     </section>
   );
 };

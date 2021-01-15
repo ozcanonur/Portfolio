@@ -125,8 +125,8 @@ const Projects = () => {
     <section className={classes.section} id='projects' ref={sectionRef}>
       <div style={{ position: 'relative' }}>
         <div className={classes.titleContainer}>
-          <h1 className={classes.title}>Projects</h1>
           <img className={classes.sphere} src={Sphere} alt='sphere' ref={sphereRef} />
+          <h1 className={classes.title}>Projects</h1>
         </div>
       </div>
       <div className={classes.projectsContainer}>
