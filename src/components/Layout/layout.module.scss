@@ -32,16 +32,30 @@
   &Right {
     right: 0;
   }
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 }
 
 .content {
   margin-left: 8rem;
   width: calc(100% - 16rem);
+
+  @media only screen and (max-width: 800px) {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 .icon {
   height: 3.5rem;
   width: 3.5rem;
+
+  @media only screen and (max-width: 1000px) {
+    height: 4rem;
+    width: 4rem;
+  }
 
   margin-top: 2rem;
   cursor: pointer;
@@ -62,6 +76,10 @@
 
   & > p:first-of-type {
     margin-bottom: 12rem;
+
+    @media only screen and (max-width: 1000px) {
+      margin-bottom: 15rem;
+    }
   }
 
   & > p {
@@ -76,6 +94,10 @@
 
     &:hover {
       opacity: 1;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      font-size: 3rem;
     }
   }
 }
@@ -123,5 +145,9 @@
 
   &:hover {
     opacity: 1;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    font-size: 3rem;
   }
 }

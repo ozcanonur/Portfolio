@@ -37,9 +37,12 @@ const Hero = () => {
   };
 
   const triangleRef = useRef(null);
+  const triangleContainerRef = useRef(null);
 
   useEffect(() => {
-    if (!triangleRef.current) return;
+    if (!triangleRef.current || !triangleContainerRef.current) return;
+
+    const containerPosition = triangleContainerRef.current.offsetTop;
 
     const moveTriangle = () => {
       if (window.pageYOffset < 1950) {
@@ -68,13 +71,13 @@ const Hero = () => {
         <img className={classes.triangle} src={Triangle} alt='3d triangle' ref={triangleRef} />
         <h1 className={classes.title}>
           <span className='word' style={{ opacity: 1 }}>
-            Fullstack&nbsp;Developer
+            Fullstack&nbsp;Developer.
           </span>
           <span className='word' style={{ opacity: 0 }}>
-            Web&nbsp;Designer
+            Web&nbsp;Designer.
           </span>
           <span className='word' style={{ opacity: 0 }}>
-            Bioinformatician
+            Avid&nbsp;Gamer.
           </span>
         </h1>
         <img className={classes.downArrow} src={ArrowDown} alt='down arrow' />
@@ -84,8 +87,8 @@ const Hero = () => {
           <h2 className={classes.introTitle}>Hello, I am Onur</h2>
           <article className={classes.introArticle}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore nostrum ratione aliquam voluptatem sed nobis
-            nemo vero maxime ad necessitatibus non iure soluta dolorem fugit, illo obcaecati ipsa at impedit corrupti
-            velit commodi quo laboriosam harum quaerat! Quisquam, eveniet excepturi.
+            nemo vero maxime ad necessitatibus non iure soluta dolorem fugit, illo obcaecati ipsa at impedit
+            corruptin.necessitatibus non iure soluta dolorem fugit, illo obcaecati ipsa at impedit corruptin.
           </article>
           <div className={classes.linksContainer}>
             <div className={classes.link}>
@@ -107,13 +110,12 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <Portal>
-        {progressDone ? (
-          <img className={classes.triangleContainer} src={TriangleWithContainer} alt='triangle with container' />
-        ) : (
-          <img className={classes.triangleContainer} src={TriangleContainer} alt='triangle container' />
-        )}
-      </Portal>
+      <img
+        className={classes.triangleContainer}
+        src={progressDone ? TriangleWithContainer : TriangleContainer}
+        alt='triangle with container'
+        ref={triangleContainerRef}
+      />
     </section>
   );
 };

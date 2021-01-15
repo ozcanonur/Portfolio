@@ -84,6 +84,7 @@ const Projects = () => {
 
     const moveSphere = () => {
       const yOffsetToSectionStart = window.pageYOffset - 4400;
+
       if (window.pageYOffset <= 4400) {
         setProgressDone(false);
         sphereRef.current.style.display = 'inherit';
@@ -163,13 +164,11 @@ const Projects = () => {
         <p onClick={redirectToGitHub}>And more on GitHub</p>
         <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
       </div>
-      <Portal>
-        {progressDone ? (
-          <img className={classes.sphereWithContainer} src={SphereWithContainer} alt='sphere with container' />
-        ) : (
-          <img className={classes.sphereContainer} src={SphereContainer} alt='sphere container' />
-        )}
-      </Portal>
+      {progressDone ? (
+        <img className={classes.sphereWithContainer} src={SphereWithContainer} alt='sphere with container' />
+      ) : (
+        <img className={classes.sphereContainer} src={SphereContainer} alt='sphere container' />
+      )}
     </section>
   );
 };

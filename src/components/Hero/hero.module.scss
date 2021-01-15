@@ -31,6 +31,12 @@
   border-left: 30vw solid transparent;
   border-right: 30vw solid transparent;
   border-bottom: 45vw solid rgba(17, 27, 32, 0.4);
+
+  @media only screen and (max-width: 800px) {
+    border-left: 45vw solid transparent;
+    border-right: 45vw solid transparent;
+    border-bottom: 67.5vw solid rgba(17, 27, 32, 0.4);
+  }
 }
 
 .triangle {
@@ -73,12 +79,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media only screen and (max-width: 800px) {
+    width: 100vw;
+  }
+
+  @media only screen and (min-width: 2100px) {
+    padding: 12rem 14rem;
+  }
 }
 
 .introTitle {
   text-align: center;
   font-size: 5vw;
   font-weight: 600;
+
+  @media only screen and (max-width: 800px) {
+    font-size: 10vw;
+  }
 }
 
 .introArticle {
@@ -86,6 +104,11 @@
   text-align: center;
   margin-top: 4rem;
   line-height: 44px;
+
+  @media only screen and (max-width: 800px) {
+    font-size: 4rem;
+    line-height: 39px;
+  }
 }
 
 .linksContainer {
@@ -114,12 +137,39 @@
   color: $color-pink;
   border-bottom: 1px solid $color-pink;
   cursor: pointer;
+
+  @media only screen and (max-width: 800px) {
+    font-size: 3rem;
+  }
 }
 
 .triangleContainer {
-  // margin-top: 340px;
-  position: absolute;
-  top: 2450px;
+  margin-top: 35rem;
+
+  // position: absolute;
+  // @media only screen and (max-width: 1920px) {
+  //   top: 2100px;
+  // }
+
+  // @media only screen and (max-width: 1200px) {
+  //   top: 2000px;
+  // }
+
+  // @media only screen and (max-width: 1000px) {
+  //   top: 1850px;
+  // }
+
+  // @media only screen and (max-width: 850px) {
+  //   top: 1750px;
+  // }
+
+  // @media only screen and (max-width: 600px) {
+  //   top: 1650px;
+  // }
+
+  // @media only screen and (max-width: 400px) {
+  //   top: 1850px;
+  // }
 }
 
 @keyframes bounce {
