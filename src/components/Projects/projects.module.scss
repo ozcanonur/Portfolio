@@ -73,6 +73,10 @@
 
   & > div:not(:last-child) {
     margin-bottom: 30rem;
+
+    @media only screen and (max-width: 800px) {
+      margin-bottom: 10rem;
+    }
   }
 
   & > div:nth-child(even) {
@@ -91,6 +95,10 @@
         & > button {
           margin-right: 0;
           margin-left: 1.4rem;
+
+          @media only screen and (max-width: 800px) {
+            margin-left: 3rem;
+          }
         }
       }
     }
@@ -179,7 +187,7 @@
 
   @media only screen and (max-width: 800px) {
     width: 100%;
-    padding: 5rem 10rem !important;
+    padding: 10rem 10rem !important;
   }
 }
 
@@ -187,7 +195,7 @@
   font-size: 4vw;
 
   @media only screen and (max-width: 800px) {
-    font-size: 6vw;
+    font-size: 7vw;
   }
 }
 
@@ -199,8 +207,8 @@
   line-height: 3.5rem;
 
   @media only screen and (max-width: 800px) {
-    font-size: 3rem;
-    line-height: 4rem;
+    font-size: 3.5rem;
+    line-height: 5rem;
   }
 }
 
@@ -211,6 +219,10 @@
 
   & > div:not(:last-child) {
     margin-bottom: 1rem;
+
+    @media only screen and (max-width: 800px) {
+      margin-bottom: 2rem;
+    }
   }
 }
 
@@ -222,6 +234,7 @@
 
 .projectLinkText {
   margin-right: 1.4rem;
+
   font-size: 2rem;
   color: $color-pink;
   border-bottom: 1px solid $color-pink;
@@ -230,12 +243,17 @@
   background-color: transparent;
 
   @media only screen and (max-width: 800px) {
-    font-size: 3rem;
+    margin-right: 3rem;
+    font-size: 4rem;
   }
 }
 
 .projectLinkIcon {
   height: 2rem;
+
+  @media only screen and (max-width: 800px) {
+    height: 4rem;
+  }
 }
 
 .projectsFooter {
@@ -262,6 +280,10 @@
 .footerGitHub {
   height: 3vw;
   margin-left: 2rem;
+
+  @media only screen and (max-width: 800px) {
+    height: 5vw;
+  }
 }
 
 .sphere {

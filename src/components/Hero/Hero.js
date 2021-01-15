@@ -179,7 +179,7 @@ const Hero = () => {
               className={classes.mobileNavContainer}
               style={{
                 width: mobileMenuOpen ? '100%' : '0',
-                opacity: mobileMenuOpen ? 1 : 0,
+                display: mobileMenuOpen ? 'inherit' : 'none',
               }}
             >
               <div className={classes.navTitle}>Navigation</div>

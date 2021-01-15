@@ -191,7 +191,8 @@ const Skills = () => {
               key={name}
               className={classes.skill}
               style={{
-                justifyContent: 'flex-end',
+                flexDirection: deviceIsBelow800Width ? 'row-reverse' : 'row',
+                justifyContent: deviceIsBelow800Width ? 'flex-start' : 'flex-end',
                 transform: deviceIsBelow1200Width ? 'rotate(0)' : `translateX(${index * -16}px) rotate(10deg)`,
               }}
             >
@@ -199,7 +200,10 @@ const Skills = () => {
               <img
                 src={icon}
                 alt={alt}
-                style={{ transform: ['Node.js', 'Docker', 'MongoDB'].includes(name) ? 'scale(1.3)' : 'none' }}
+                style={{
+                  transform: ['Node.js', 'Docker', 'MongoDB'].includes(name) ? 'scale(1.3)' : 'none',
+                  marginRight: deviceIsBelow800Width ? '1.4rem' : '0',
+                }}
               />
             </div>
           ))}
