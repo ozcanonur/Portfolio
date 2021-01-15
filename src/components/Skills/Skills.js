@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
-import { Portal } from 'react-portal';
 import { useMediaQuery } from 'react-responsive';
 
 import Cube from '../../assets/svg/cube_3d.svg';
 import CubeContainer from '../../assets/svg/cube_container.svg';
 import CubeWithContainer from '../../assets/svg/cube_with_container.svg';
+import HorizontalLines from '../../assets/svg/horizontal_lines.svg';
 
 import ReactIcon from '../../assets/svg/react_icon.svg';
 import ReduxIcon from '../../assets/svg/redux_icon.svg';
@@ -30,7 +30,7 @@ const Skills = () => {
 
   const deviceIsBelow1200Width = useMediaQuery({ query: '(max-width: 1200px)' });
 
-  // console.log(deviceIsBelow1200Width);
+  const deviceIsBelow800Width = useMediaQuery({ query: '(max-width: 800px)' });
 
   useEffect(() => {
     AOS.init({
@@ -116,30 +116,35 @@ const Skills = () => {
     },
   ];
 
+  function convertRemToPixels(rem) {
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  }
+
   const cubeRef = useRef(null);
   const cubeContainerRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (!cubeRef.current || !cubeContainerRef.current) return;
-
     const moveCube = () => {
-      const yOffsetToSectionStart = window.pageYOffset - 2400;
+      if (!cubeRef.current || !cubeContainerRef.current || !sectionRef.current || deviceIsBelow800Width) return;
 
-      // console.log(cubeContainerRef.offsetTop);
+      const containerPosition = cubeContainerRef.current.offsetTop;
+      const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20) - 200;
 
-      if (window.pageYOffset <= 2400) {
+      const rotateAmount = (window.pageYOffset - startPosition) / 4;
+
+      if (window.pageYOffset <= startPosition) {
         setProgressDone(false);
         cubeRef.current.style.display = 'inherit';
         cubeRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-      } else if (window.pageYOffset > 2400 && window.pageYOffset < 3920) {
-        setProgressDone(false);
-        cubeRef.current.style.display = 'inherit';
-        cubeRef.current.style.top = cubeRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
-          yOffsetToSectionStart / 4.2
-        }deg)`;
-      } else {
+      } else if (containerPosition + startPosition - 50 < window.pageYOffset) {
         setProgressDone(true);
         cubeRef.current.style.display = 'none';
+      } else {
+        setProgressDone(false);
+        cubeRef.current.style.display = 'inherit';
+        cubeRef.current.style.top = `calc(50% + ${window.pageYOffset - startPosition}px)`;
+        cubeRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
       }
     };
 
@@ -151,7 +156,7 @@ const Skills = () => {
   }, []);
 
   return (
-    <section className={classes.section} id='skills' data-aos='fade-in'>
+    <section className={classes.section} id='skills' data-aos='fade-in' ref={sectionRef}>
       <div
         style={{
           position: 'relative',
@@ -200,12 +205,16 @@ const Skills = () => {
           ))}
         </div>
       </div>
-      <img
-        className={classes.cubeContainer}
-        src={progressDone ? CubeWithContainer : CubeContainer}
-        alt='cube container'
-        ref={cubeContainerRef}
-      />
+      {!deviceIsBelow800Width ? (
+        <img
+          className={classes.cubeContainer}
+          src={progressDone ? CubeWithContainer : CubeContainer}
+          alt='cube container'
+          ref={cubeContainerRef}
+        />
+      ) : (
+        <img className={classes.horizontalLines} src={HorizontalLines} alt='section seperator lines' />
+      )}
     </section>
   );
 };

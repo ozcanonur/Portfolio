@@ -2,6 +2,7 @@
 
 .section {
   background-color: $color-blue;
+  position: relative;
 }
 
 .titleContainer {
@@ -39,17 +40,6 @@
   }
 }
 
-.triangle {
-  // position: absolute;
-  position: fixed;
-  // position: sticky;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  height: 15vw;
-}
-
 .downArrow {
   position: absolute;
   bottom: 5%;
@@ -81,7 +71,7 @@
   align-items: center;
 
   @media only screen and (max-width: 800px) {
-    width: 100vw;
+    width: 95vw;
   }
 
   @media only screen and (min-width: 2100px) {
@@ -137,9 +127,25 @@
   color: $color-pink;
   border-bottom: 1px solid $color-pink;
   cursor: pointer;
+  background-color: transparent;
 
   @media only screen and (max-width: 800px) {
     font-size: 3rem;
+  }
+}
+
+.triangle {
+  position: absolute;
+  // position: fixed;
+  // position: sticky;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 15vw;
+
+  @media only screen and (max-width: 800px) {
+    height: 25vw;
   }
 }
 
@@ -172,6 +178,10 @@
   // }
 }
 
+.diagonalLines {
+  margin-top: 25rem;
+}
+
 @keyframes bounce {
   0% {
     transform: translateY(0);
@@ -199,5 +209,62 @@
 
   100% {
     transform: translateY(0);
+  }
+}
+
+.homeIconContainer {
+  background-color: rgba($color-blue-dark-2, 0.6);
+  border-radius: 50%;
+
+  padding: 2.5rem;
+
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.homeIcon {
+  height: 5rem;
+}
+
+.copyright {
+  width: max-content;
+  margin-bottom: 14rem;
+
+  font-size: 3rem;
+  opacity: 0.4;
+
+  position: absolute;
+  left: -8rem;
+  bottom: 0;
+
+  transform: rotate(90deg);
+}
+
+.socialMedia {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+  position: absolute;
+  bottom: 0;
+  right: 3rem;
+}
+
+.socialMediaIcon {
+  height: 5rem;
+  width: 5rem;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 1;
   }
 }

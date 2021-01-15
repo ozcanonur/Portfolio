@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
-import { Portal } from 'react-portal';
+import { useMediaQuery } from 'react-responsive';
 
 import Sphere from '../../assets/svg/sphere.svg';
 import SphereContainer from '../../assets/svg/sphere_container.svg';
 import SphereWithContainer from '../../assets/svg/sphere_with_container.svg';
+import WavyLines from '../../assets/svg/wavy_lines.svg';
 
 import UrlIcon from '../../assets/svg/url_icon.svg';
 import GitHubIcon from '../../assets/svg/github_icon.svg';
@@ -18,6 +19,8 @@ import classes from './projects.module.scss';
 
 const Projects = () => {
   const [progressDone, setProgressDone] = useState(false);
+
+  const deviceIsBelow800Width = useMediaQuery({ query: '(max-width: 800px)' });
 
   useEffect(() => {
     AOS.init({
@@ -77,29 +80,37 @@ const Projects = () => {
     window.open('https://github.com/ozcanonur', '_blank');
   };
 
+  function convertRemToPixels(rem) {
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  }
+
   const sphereRef = useRef(null);
+  const sphereContainerRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (!sphereRef.current) return;
-
     const moveSphere = () => {
-      const yOffsetToSectionStart = window.pageYOffset - 4400;
+      if (!sphereRef.current || !sphereContainerRef.current || !sectionRef.current) return;
 
-      if (window.pageYOffset <= 4400) {
+      const containerPosition = sphereContainerRef.current.offsetTop;
+      const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20);
+
+      const rotateAmount = (window.pageYOffset - startPosition) / 4;
+
+      if (window.pageYOffset <= startPosition) {
         setProgressDone(false);
         sphereRef.current.style.display = 'inherit';
         sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
         sphereRef.current.style.opacity = 1;
-      } else if (window.pageYOffset > 4400 && window.pageYOffset < 8520) {
-        setProgressDone(false);
-        sphereRef.current.style.display = 'inherit';
-        sphereRef.current.style.transform = `translate(-50%, calc(-50% + ${yOffsetToSectionStart}px)) rotate(${
-          yOffsetToSectionStart / 3.81
-        }deg)`;
-        sphereRef.current.style.opacity = 0.7;
-      } else {
+      } else if (window.pageYOffset + convertRemToPixels(33) > containerPosition) {
         setProgressDone(true);
         sphereRef.current.style.display = 'none';
+      } else {
+        setProgressDone(false);
+        sphereRef.current.style.display = 'inherit';
+        sphereRef.current.style.top = `calc(50% + ${window.pageYOffset - startPosition}px)`;
+        sphereRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
+        sphereRef.current.style.opacity = 0.7;
       }
     };
 
@@ -111,7 +122,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <section className={classes.section} id='projects'>
+    <section className={classes.section} id='projects' ref={sectionRef}>
       <div style={{ position: 'relative' }}>
         <div className={classes.titleContainer}>
           <h1 className={classes.title}>Projects</h1>
@@ -134,25 +145,25 @@ const Projects = () => {
               <article className={classes.projectDescription}>{description}</article>
               <div className={classes.projectLinksContainer}>
                 <div className={classes.projectLink}>
-                  <p
+                  <button
                     className={classes.projectLinkText}
                     onClick={() => {
                       window.open(websiteUrl, '_blank');
                     }}
                   >
                     View website
-                  </p>
+                  </button>
                   <img className={classes.projectLinkIcon} src={UrlIcon} alt='view pitdb website' />
                 </div>
                 <div className={classes.projectLink}>
-                  <p
+                  <button
                     className={classes.projectLinkText}
                     onClick={() => {
                       window.open(githubUrl, '_blank');
                     }}
                   >
                     View source
-                  </p>
+                  </button>
                   <img className={classes.projectLinkIcon} src={GitHubIcon} alt='view pitdb source' />
                 </div>
               </div>
@@ -161,13 +172,18 @@ const Projects = () => {
         ))}
       </div>
       <div className={classes.projectsFooter}>
-        <p onClick={redirectToGitHub}>And more on GitHub</p>
+        <button onClick={redirectToGitHub}>And more on GitHub</button>
         <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
       </div>
-      {progressDone ? (
-        <img className={classes.sphereWithContainer} src={SphereWithContainer} alt='sphere with container' />
+      {!deviceIsBelow800Width ? (
+        <img
+          className={progressDone ? classes.sphereWithContainer : classes.sphereContainer}
+          src={progressDone ? SphereWithContainer : SphereContainer}
+          alt='sphere container'
+          ref={sphereContainerRef}
+        />
       ) : (
-        <img className={classes.sphereContainer} src={SphereContainer} alt='sphere container' />
+        <img className={classes.wavyLines} src={WavyLines} alt='section separator lines' />
       )}
     </section>
   );

@@ -39,17 +39,17 @@ const Layout = ({ children }) => {
       <nav className={`${classes.sidebar} ${classes.sidebarLeft}`}>
         <img className={classes.icon} src={HomeIcon} alt='home' onClick={scrollToHero} />
         <div className={classes.linksContainer}>
-          <p onClick={scrollToSkills}>Skills</p>
-          <p onClick={scrollToProjects}>Projects</p>
+          <button onClick={scrollToSkills}>Skills</button>
+          <button onClick={scrollToProjects}>Projects</button>
         </div>
         <p className={classes.copyright}>&copy; Onur Ozcan 2021</p>
       </nav>
       <main className={classes.content}>{children}</main>
       <nav className={`${classes.sidebar} ${classes.sidebarRight}`}>
         <div />
-        <p className={classes.contactMeText} onClick={scrollToContact}>
+        <button className={classes.contactMeText} onClick={scrollToContact}>
           Contact Me
-        </p>
+        </button>
         <div className={classes.socialMedia}>
           <img className={classes.socialMediaIcon} src={GithubIcon} alt='github link' onClick={redirectToGitHub} />
           <img

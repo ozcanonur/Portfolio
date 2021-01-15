@@ -27,13 +27,17 @@
   // @media only screen and (max-width: 400px) {
   //   margin-top: 40rem;
   // }
+
+  @media only screen and (max-width: 800px) {
+    margin-top: 0;
+  }
 }
 
 .titleContainer {
   background-color: rgba($color-blue-dark, 0.4);
   border-radius: 50%;
-  width: 25vw;
-  height: 25vw;
+  width: 30vw;
+  height: 30vw;
 
   padding: 5rem;
   box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
@@ -57,21 +61,6 @@
 
   @media only screen and (max-width: 800px) {
     font-size: 10vw;
-  }
-}
-
-.sphere {
-  position: absolute;
-  height: 18vw;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  z-index: -1;
-
-  @media only screen and (max-width: 800px) {
-    height: 30vw;
   }
 }
 
@@ -99,7 +88,7 @@
       & .projectLink {
         flex-direction: row-reverse;
 
-        & > p {
+        & > button {
           margin-right: 0;
           margin-left: 1.4rem;
         }
@@ -238,6 +227,8 @@
   border-bottom: 1px solid $color-pink;
   cursor: pointer;
 
+  background-color: transparent;
+
   @media only screen and (max-width: 800px) {
     font-size: 3rem;
   }
@@ -254,6 +245,11 @@
   margin-top: 150px;
   width: max-content;
 
+  & > button {
+    background-color: transparent;
+    color: white;
+  }
+
   font-size: 4vw;
 
   cursor: pointer;
@@ -268,10 +264,29 @@
   margin-left: 2rem;
 }
 
+.sphere {
+  position: absolute;
+  height: 18vw;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: -1;
+
+  @media only screen and (max-width: 800px) {
+    height: 30vw;
+  }
+}
+
 .sphereContainer {
   margin-top: 28rem;
 }
 
 .sphereWithContainer {
   margin-top: 20rem;
+}
+
+.wavyLines {
+  margin-top: 0;
 }

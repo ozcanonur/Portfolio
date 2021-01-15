@@ -21,7 +21,8 @@
   justify-content: space-between;
   align-items: center;
 
-  & p {
+  & button,
+  p {
     transform: rotate(90deg);
   }
 
@@ -74,7 +75,7 @@
   align-items: center;
   margin-bottom: 8rem;
 
-  & > p:first-of-type {
+  & > button:first-of-type {
     margin-bottom: 12rem;
 
     @media only screen and (max-width: 1000px) {
@@ -82,12 +83,15 @@
     }
   }
 
-  & > p {
+  & > button {
     font-size: 2rem;
     border-bottom: 1px solid $color-pink;
     width: max-content;
     cursor: pointer;
     font-weight: 600;
+
+    background-color: transparent;
+    color: white;
 
     opacity: 0.8;
     transition: all 0.2s;
@@ -139,6 +143,8 @@
   width: max-content;
   cursor: pointer;
   font-weight: 600;
+  background-color: transparent;
+  color: white;
 
   opacity: 0.8;
   transition: all 0.2s;
