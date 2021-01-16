@@ -76,7 +76,7 @@ const Projects = () => {
       <div style={{ position: 'relative' }}>
         <div className={classes.titleContainer}>
           <img className={classes.sphere} src={Sphere} alt='sphere' ref={sphereRef} />
-          <h1 className={classes.title}>Projects</h1>
+          <h2 className={classes.title}>Projects</h2>
         </div>
       </div>
       <div className={classes.projectsContainer}>

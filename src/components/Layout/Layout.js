@@ -29,7 +29,10 @@ const Layout = ({ children }) => {
 
   return (
     <div className={classes.container}>
-      <Helmet title='Onur Ozcan' />
+      <Helmet title='Onur Ozcan'>
+        <meta name='description' content='Onur Ozcan personal portfolio website.' />
+        <html lang='en' />
+      </Helmet>
       <nav className={`${classes.sidebar} ${classes.sidebarLeft}`}>
         <img className={classes.icon} src={HomeIcon} alt='home' onClick={scrollToHero} />
         <div className={classes.linksContainer}>
