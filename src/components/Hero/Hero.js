@@ -15,15 +15,13 @@ import HomeIcon from '../../assets/svg/home.svg';
 import MenuIcon from '../../assets/svg/menu_icon.svg';
 import CancelIcon from '../../assets/svg/cancel.svg';
 
-import { useWindowSize, startWords, redirectToGitHub, redirectToLinkedin } from '../../utils';
+import { startWords, redirectToGitHub, redirectToLinkedin } from '../../utils';
 
 import classes from './hero.module.scss';
 
 const Hero = () => {
   const [progressDone, setProgressDone] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const windowSize = useWindowSize();
 
   useEffect(() => {
     AOS.init({
@@ -40,36 +38,43 @@ const Hero = () => {
   const triangleContainerRef = useRef(null);
 
   useEffect(() => {
-    const moveTriangle = () => {
+    let last_known_scroll_position = 0;
+    let ticking = false;
+
+    const moveTriangle = (scroll_pos) => {
       if (!triangleRef.current || !triangleContainerRef.current) return;
 
       const containerPosition = triangleContainerRef.current.offsetTop;
 
-      if (containerPosition - window.pageYOffset < 400) {
+      if (containerPosition - scroll_pos < 400) {
         setProgressDone(true);
 
         triangleRef.current.style.display = 'none';
       } else {
         setProgressDone(false);
         triangleRef.current.style.display = 'inherit';
-        triangleRef.current.style.top = `calc(50% + ${window.pageYOffset}px)`;
-        triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${window.pageYOffset / 11}deg)`;
+        triangleRef.current.style.top = `calc(50% + ${scroll_pos}px)`;
+        triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${scroll_pos / 11}deg)`;
       }
     };
 
-    window.addEventListener('scroll', moveTriangle);
+    window.addEventListener('scroll', () => {
+      last_known_scroll_position = window.scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          moveTriangle(last_known_scroll_position);
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    });
 
     return () => {
       window.removeEventListener('scroll', moveTriangle);
-
-      if (!triangleRef.current) return;
-
-      setProgressDone(false);
-      triangleRef.current.style.display = 'inherit';
-      triangleRef.current.style.top = '50%';
-      triangleRef.current.style.transform = 'translate(-50%, -50%)';
     };
-  }, [windowSize]);
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);

@@ -29,32 +29,46 @@ const Projects = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const moveSphere = () => {
+    let last_known_scroll_position = 0;
+    let ticking = false;
+
+    const moveSphere = (scroll_pos) => {
       if (!sphereRef.current || !sphereContainerRef.current || !sectionRef.current) return;
 
       const containerPosition = sphereContainerRef.current.offsetTop;
       const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20);
 
-      const rotateAmount = (window.pageYOffset - startPosition) / 4;
+      const rotateAmount = (scroll_pos - startPosition) / 4;
 
-      if (window.pageYOffset <= startPosition) {
+      if (scroll_pos <= startPosition) {
         setProgressDone(false);
         sphereRef.current.style.display = 'inherit';
         sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
         sphereRef.current.style.opacity = 1;
-      } else if (window.pageYOffset + convertRemToPixels(33) > containerPosition) {
+      } else if (scroll_pos + convertRemToPixels(33) > containerPosition) {
         setProgressDone(true);
         sphereRef.current.style.display = 'none';
       } else {
         setProgressDone(false);
         sphereRef.current.style.display = 'inherit';
-        sphereRef.current.style.top = `calc(50% + ${window.pageYOffset - startPosition}px)`;
+        sphereRef.current.style.top = `calc(50% + ${scroll_pos - startPosition}px)`;
         sphereRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
         sphereRef.current.style.opacity = 0.7;
       }
     };
 
-    window.addEventListener('scroll', moveSphere);
+    window.addEventListener('scroll', () => {
+      last_known_scroll_position = window.scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          moveSphere(last_known_scroll_position);
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    });
 
     return () => {
       window.removeEventListener('scroll', moveSphere);

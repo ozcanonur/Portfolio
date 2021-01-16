@@ -26,30 +26,44 @@ const Skills = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const moveCube = () => {
+    let last_known_scroll_position = 0;
+    let ticking = false;
+
+    const moveCube = (scroll_pos) => {
       if (!cubeRef.current || !cubeContainerRef.current || !sectionRef.current) return;
 
       const containerPosition = cubeContainerRef.current.offsetTop;
       const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20) - 200;
 
-      const rotateAmount = (window.pageYOffset - startPosition) / 4;
+      const rotateAmount = (scroll_pos - startPosition) / 4;
 
-      if (window.pageYOffset <= startPosition) {
+      if (scroll_pos <= startPosition) {
         setProgressDone(false);
         cubeRef.current.style.display = 'inherit';
         cubeRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-      } else if (containerPosition + startPosition - 50 < window.pageYOffset) {
+      } else if (containerPosition + startPosition - 50 < scroll_pos) {
         setProgressDone(true);
         cubeRef.current.style.display = 'none';
       } else {
         setProgressDone(false);
         cubeRef.current.style.display = 'inherit';
-        cubeRef.current.style.top = `calc(50% + ${window.pageYOffset - startPosition}px)`;
+        cubeRef.current.style.top = `calc(50% + ${scroll_pos - startPosition}px)`;
         cubeRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
       }
     };
 
-    window.addEventListener('scroll', moveCube);
+    window.addEventListener('scroll', () => {
+      last_known_scroll_position = window.scrollY;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          moveCube(last_known_scroll_position);
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    });
 
     return () => {
       window.removeEventListener('scroll', moveCube);
