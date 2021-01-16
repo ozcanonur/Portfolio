@@ -64,10 +64,6 @@ const Skills = () => {
         ticking = true;
       }
     });
-
-    return () => {
-      window.removeEventListener('scroll', moveCube);
-    };
   }, []);
 
   return (

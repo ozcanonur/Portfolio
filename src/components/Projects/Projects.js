@@ -69,10 +69,6 @@ const Projects = () => {
         ticking = true;
       }
     });
-
-    return () => {
-      window.removeEventListener('scroll', moveSphere);
-    };
   }, []);
 
   return (

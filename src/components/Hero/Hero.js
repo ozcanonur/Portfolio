@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import { Portal } from 'react-portal';
+import { Transition } from 'react-transition-group';
 
 import Triangle from '../../assets/svg/triangle_3d.svg';
 import ArrowDown from '../../assets/svg/arrow_down.svg';
@@ -70,10 +71,6 @@ const Hero = () => {
         ticking = true;
       }
     });
-
-    return () => {
-      window.removeEventListener('scroll', moveTriangle);
-    };
   }, []);
 
   const toggleMobileMenu = () => {
@@ -97,6 +94,20 @@ const Hero = () => {
   const scrollToContact = () => {
     scrollTo('#contact');
     setMobileMenuOpen(false);
+  };
+
+  const duration = 300;
+
+  const defaultStyle = {
+    transition: `opacity ${duration}ms ease-in-out`,
+    opacity: 0,
+  };
+
+  const transitionStyles = {
+    entering: { opacity: 1 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+    exited: { opacity: 0 },
   };
 
   return (
@@ -150,6 +161,9 @@ const Hero = () => {
               <img className={classes.linkIcon} src={CVIcon} alt='cv link' />
               <button className={classes.linkText}>CV</button>
             </div>
+            <a href='mailto:ozcanonur10@gmail.com' className={classes.linkText}>
+              ozcanonur10@gmail.com
+            </a>
           </div>
         </div>
       </div>
@@ -169,33 +183,31 @@ const Hero = () => {
           )}
         </div>
         <Portal>
-          <nav
-            className={classes.mobileNavContainer}
-            style={{
-              width: mobileMenuOpen ? '100%' : '0',
-              display: mobileMenuOpen ? 'inherit' : 'none',
-            }}
-          >
-            <div className={classes.navTitle}>Navigation</div>
-            <div
-              className={classes.mobileNavItem}
-              onClick={() => {
-                scrollToHero();
-                setMobileMenuOpen(false);
-              }}
-            >
-              Home
-            </div>
-            <div className={classes.mobileNavItem} onClick={scrollToSkills}>
-              Skills
-            </div>
-            <div className={classes.mobileNavItem} onClick={scrollToProjects}>
-              Projects
-            </div>
-            <div className={classes.mobileNavItem} onClick={scrollToContact}>
-              Contact me
-            </div>
-          </nav>
+          <Transition in={mobileMenuOpen} timeout={duration}>
+            {(state) => (
+              <nav style={{ ...defaultStyle, ...transitionStyles[state] }} className={classes.mobileNavContainer}>
+                <div className={classes.navTitle}>Navigation</div>
+                <div
+                  className={classes.mobileNavItem}
+                  onClick={() => {
+                    scrollToHero();
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Home
+                </div>
+                <div className={classes.mobileNavItem} onClick={scrollToSkills}>
+                  Skills
+                </div>
+                <div className={classes.mobileNavItem} onClick={scrollToProjects}>
+                  Projects
+                </div>
+                <div className={classes.mobileNavItem} onClick={scrollToContact}>
+                  Contact me
+                </div>
+              </nav>
+            )}
+          </Transition>
         </Portal>
       </>
     </section>

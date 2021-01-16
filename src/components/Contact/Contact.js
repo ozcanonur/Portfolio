@@ -14,6 +14,10 @@ const Contact = () => {
   return (
     <section className={classes.section} id='contact' data-aos='fade-in'>
       <h1 className={classes.title}>Contact me</h1>
+      <div className={classes.subTitleContainer}>
+        <h2 className={classes.subTitle}>You can either use the form below or send me an email directly.</h2>
+        <a className={classes.email}>ozcanonur10@gmail.com</a>
+      </div>
       <div className={classes.contactForm}>
         <div className={classes.topRow}>
           <div className={classes.nameContainer}>

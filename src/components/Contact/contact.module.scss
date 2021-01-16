@@ -23,6 +23,33 @@
   }
 }
 
+.subTitleContainer {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.subTitle {
+  font-size: 2vw;
+
+  @media only screen and (max-width: 800px) {
+    font-size: 3vw;
+  }
+}
+
+.email {
+  font-size: 2vw;
+  color: $color-pink;
+  border-bottom: 1px solid $color-pink;
+  margin-top: 1rem;
+
+  @media only screen and (max-width: 800px) {
+    font-size: 3vw;
+  }
+}
+
 .contactForm {
   width: 75vw;
   margin-top: 10rem;
