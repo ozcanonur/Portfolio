@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
-import { useMediaQuery } from 'react-responsive';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import { Portal } from 'react-portal';
 
@@ -16,7 +15,7 @@ import HomeIcon from '../../assets/svg/home.svg';
 import MenuIcon from '../../assets/svg/menu_icon.svg';
 import CancelIcon from '../../assets/svg/cancel.svg';
 
-import { useWindowSize, startWords } from '../../utils';
+import { useWindowSize, startWords, redirectToGitHub, redirectToLinkedin } from '../../utils';
 
 import classes from './hero.module.scss';
 
@@ -25,7 +24,6 @@ const Hero = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const windowSize = useWindowSize();
-  const deviceIsBelow800Width = useMediaQuery({ query: '(max-width: 800px)' });
 
   useEffect(() => {
     AOS.init({
@@ -38,25 +36,18 @@ const Hero = () => {
     }, 2000);
   }, []);
 
-  const redirectToGitHub = () => {
-    window.open('https://github.com/ozcanonur', '_blank');
-  };
-
-  const redirectToLinkedin = () => {
-    window.open('https://www.linkedin.com/in/onur-ozcan-a5329b76/', '_blank');
-  };
-
   const triangleRef = useRef(null);
   const triangleContainerRef = useRef(null);
 
   useEffect(() => {
     const moveTriangle = () => {
-      if (!triangleRef.current || !triangleContainerRef.current || deviceIsBelow800Width) return;
+      if (!triangleRef.current || !triangleContainerRef.current) return;
 
       const containerPosition = triangleContainerRef.current.offsetTop;
 
-      if (containerPosition - window.pageYOffset < 500) {
+      if (containerPosition - window.pageYOffset < 400) {
         setProgressDone(true);
+
         triangleRef.current.style.display = 'none';
       } else {
         setProgressDone(false);
@@ -70,6 +61,13 @@ const Hero = () => {
 
     return () => {
       window.removeEventListener('scroll', moveTriangle);
+
+      if (!triangleRef.current) return;
+
+      setProgressDone(false);
+      triangleRef.current.style.display = 'inherit';
+      triangleRef.current.style.top = '50%';
+      triangleRef.current.style.transform = 'translate(-50%, -50%)';
     };
   }, [windowSize]);
 
@@ -96,22 +94,17 @@ const Hero = () => {
     setMobileMenuOpen(false);
   };
 
-  console.log(mobileMenuOpen);
   return (
     <section className={classes.section} id='hero'>
-      {deviceIsBelow800Width ? (
-        <div className={classes.homeIconContainer} onClick={scrollToHero}>
-          <img className={classes.homeIcon} src={HomeIcon} alt='home' />
-        </div>
-      ) : null}
+      <div className={classes.homeIconContainer} onClick={scrollToHero}>
+        <img className={classes.homeIcon} src={HomeIcon} alt='home' />
+      </div>
       <div className={classes.titleContainer}>
-        {deviceIsBelow800Width ? <p className={classes.copyright}>&copy; Onur Ozcan 2021</p> : null}
-        {deviceIsBelow800Width ? (
-          <div className={classes.socialMedia}>
-            <img className={classes.socialMediaIcon} src={GithubIcon} alt='github link' onClick={redirectToGitHub} />
-            <img className={classes.socialMediaIcon} src={LinkedinIcon} alt='linkedin link' onClick={redirectToLinkedin} />
-          </div>
-        ) : null}
+        <p className={classes.copyright}>&copy; Onur Ozcan 2021</p>
+        <div className={classes.socialMedia}>
+          <img className={classes.socialMediaIcon} src={GithubIcon} alt='github link' onClick={redirectToGitHub} />
+          <img className={classes.socialMediaIcon} src={LinkedinIcon} alt='linkedin link' onClick={redirectToLinkedin} />
+        </div>
         <div className={classes.triangleBg} />
         <img className={classes.triangle} src={Triangle} alt='3d triangle' ref={triangleRef} />
         <h1 className={classes.title}>
@@ -155,56 +148,51 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      {!deviceIsBelow800Width ? (
-        <img
-          className={classes.triangleContainer}
-          src={progressDone ? TriangleWithContainer : TriangleContainer}
-          alt='triangle with container'
-          ref={triangleContainerRef}
-        />
-      ) : (
-        <img className={classes.diagonalLines} src={DiagonalLines} alt='section seperator lines' />
-      )}
-      {deviceIsBelow800Width ? (
-        <>
-          <div className={classes.mobileMenuContainer} onClick={toggleMobileMenu}>
-            {mobileMenuOpen ? (
-              <img className={classes.menuIcon} src={CancelIcon} alt='close menu' />
-            ) : (
-              <img className={classes.menuIcon} src={MenuIcon} alt='menu' />
-            )}
-          </div>
-          <Portal>
-            <nav
-              className={classes.mobileNavContainer}
-              style={{
-                width: mobileMenuOpen ? '100%' : '0',
-                display: mobileMenuOpen ? 'inherit' : 'none',
+      <img
+        className={classes.triangleContainer}
+        src={progressDone ? TriangleWithContainer : TriangleContainer}
+        alt='triangle with container'
+        ref={triangleContainerRef}
+      />
+      <img className={classes.diagonalLines} src={DiagonalLines} alt='section seperator lines' />
+      <>
+        <div className={classes.mobileMenuContainer} onClick={toggleMobileMenu}>
+          {mobileMenuOpen ? (
+            <img className={classes.menuIcon} src={CancelIcon} alt='close menu' />
+          ) : (
+            <img className={classes.menuIcon} src={MenuIcon} alt='menu' />
+          )}
+        </div>
+        <Portal>
+          <nav
+            className={classes.mobileNavContainer}
+            style={{
+              width: mobileMenuOpen ? '100%' : '0',
+              display: mobileMenuOpen ? 'inherit' : 'none',
+            }}
+          >
+            <div className={classes.navTitle}>Navigation</div>
+            <div
+              className={classes.mobileNavItem}
+              onClick={() => {
+                scrollToHero();
+                setMobileMenuOpen(false);
               }}
             >
-              <div className={classes.navTitle}>Navigation</div>
-              <div
-                className={classes.mobileNavItem}
-                onClick={() => {
-                  scrollToHero();
-                  setMobileMenuOpen(false);
-                }}
-              >
-                Home
-              </div>
-              <div className={classes.mobileNavItem} onClick={scrollToSkills}>
-                Skills
-              </div>
-              <div className={classes.mobileNavItem} onClick={scrollToProjects}>
-                Projects
-              </div>
-              <div className={classes.mobileNavItem} onClick={scrollToContact}>
-                Contact me
-              </div>
-            </nav>
-          </Portal>
-        </>
-      ) : null}
+              Home
+            </div>
+            <div className={classes.mobileNavItem} onClick={scrollToSkills}>
+              Skills
+            </div>
+            <div className={classes.mobileNavItem} onClick={scrollToProjects}>
+              Projects
+            </div>
+            <div className={classes.mobileNavItem} onClick={scrollToContact}>
+              Contact me
+            </div>
+          </nav>
+        </Portal>
+      </>
     </section>
   );
 };

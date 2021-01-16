@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
-import { useMediaQuery } from 'react-responsive';
 
 import Sphere from '../../assets/svg/sphere.svg';
 import SphereContainer from '../../assets/svg/sphere_container.svg';
@@ -10,17 +9,13 @@ import WavyLines from '../../assets/svg/wavy_lines.svg';
 import UrlIcon from '../../assets/svg/url_icon.svg';
 import GitHubIcon from '../../assets/svg/github_icon.svg';
 
-import pitdbImg from '../../assets/img/pitdb.png';
-import chemphoprologImg from '../../assets/img/chemphoprolog.png';
-import discordImg from '../../assets/img/discord.png';
-import heartspaceImg from '../../assets/img/heartspace.png';
+import { projects } from '../../variables/projects';
+import { redirectToGitHub, convertRemToPixels } from '../../utils';
 
 import classes from './projects.module.scss';
 
 const Projects = () => {
   const [progressDone, setProgressDone] = useState(false);
-
-  const deviceIsBelow800Width = useMediaQuery({ query: '(max-width: 800px)' });
 
   useEffect(() => {
     AOS.init({
@@ -28,61 +23,6 @@ const Projects = () => {
       once: true,
     });
   }, []);
-
-  const projects = [
-    {
-      title: 'PITDB',
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
-      img: pitdbImg,
-      websiteUrl: 'http://pitdb.herokuapp.com/',
-      githubUrl: 'https://github.com/ozcanonur/PITDB',
-    },
-    {
-      title: 'Chemphoprolog',
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
-      img: chemphoprologImg,
-      websiteUrl: 'http://chemphoprolog.herokuapp.com/',
-      githubUrl: 'https://github.com/ozcanonur/chemphoprolog',
-    },
-    {
-      title: 'Discord',
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
-      img: discordImg,
-      websiteUrl: 'http://ozcanonur-discord.herokuapp.com/',
-      githubUrl: 'https://github.com/ozcanonur/discord-clone',
-    },
-    {
-      title: 'Heartspace',
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
-      img: heartspaceImg,
-      websiteUrl: 'https://www.findheartspace.com/',
-      githubUrl: 'https://github.com/ozcanonur/Heartspace',
-    },
-  ];
-
-  const redirectToGitHub = () => {
-    window.open('https://github.com/ozcanonur', '_blank');
-  };
-
-  function convertRemToPixels(rem) {
-    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-  }
 
   const sphereRef = useRef(null);
   const sphereContainerRef = useRef(null);
@@ -175,16 +115,13 @@ const Projects = () => {
         <button onClick={redirectToGitHub}>And more on GitHub</button>
         <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
       </div>
-      {!deviceIsBelow800Width ? (
-        <img
-          className={progressDone ? classes.sphereWithContainer : classes.sphereContainer}
-          src={progressDone ? SphereWithContainer : SphereContainer}
-          alt='sphere container'
-          ref={sphereContainerRef}
-        />
-      ) : (
-        <img className={classes.wavyLines} src={WavyLines} alt='section separator lines' />
-      )}
+      <img
+        className={progressDone ? classes.sphereWithContainer : classes.sphereContainer}
+        src={progressDone ? SphereWithContainer : SphereContainer}
+        alt='sphere container'
+        ref={sphereContainerRef}
+      />
+      <img className={classes.wavyLines} src={WavyLines} alt='section separator lines' />
     </section>
   );
 };

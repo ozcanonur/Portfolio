@@ -84,6 +84,7 @@
 
   @media only screen and (max-width: 1200px) {
     transform: rotate(0);
+    align-items: flex-start;
   }
 
   @media only screen and (max-width: 900px) {
@@ -146,6 +147,11 @@
 
   @media only screen and (max-width: 1200px) {
     transform: rotate(0);
+    justify-content: flex-start;
+  }
+
+  @media only screen and (max-width: 800px) {
+    justify-content: center;
   }
 
   &::before {
@@ -171,6 +177,8 @@
   width: 100%;
   z-index: 99;
 
+  transform: rotate(-10deg);
+
   & > *:first-child {
     margin-right: 4rem;
 
@@ -193,13 +201,36 @@
     }
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1200px) {
     width: auto;
+    transform: rotate(0);
+  }
+}
+
+.rightSkill {
+  transform: rotate(10deg);
+  justify-content: flex-end;
+
+  @media only screen and (max-width: 1200px) {
+    transform: rotate(0);
+    flex-direction: row-reverse;
+  }
+
+  & > img {
+    margin-right: 4rem;
+  }
+
+  & > p {
+    margin-right: 0;
   }
 }
 
 .cubeContainer {
   margin-top: 30rem;
+
+  @media only screen and (max-width: 800px) {
+    display: none !important;
+  }
 
   // @media only screen and (min-width: 2100px) {
   //   top: 4900px;
@@ -240,9 +271,15 @@
 
   @media only screen and (max-width: 800px) {
     height: 30vw;
+    display: none !important;
   }
 }
 
 .horizontalLines {
-  margin-top: 8rem;
+  margin-top: 20rem;
+  display: none;
+
+  @media only screen and (max-width: 800px) {
+    display: inherit;
+  }
 }

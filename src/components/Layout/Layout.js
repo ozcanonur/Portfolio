@@ -8,6 +8,8 @@ import LinkedinIcon from '../../assets/svg/linkedin_icon.svg';
 
 import classes from './layout.module.scss';
 
+import { redirectToGitHub, redirectToLinkedin } from '../../utils';
+
 const Layout = ({ children }) => {
   const scrollToHero = () => {
     scrollTo('#hero');
@@ -23,14 +25,6 @@ const Layout = ({ children }) => {
 
   const scrollToContact = () => {
     scrollTo('#contact');
-  };
-
-  const redirectToGitHub = () => {
-    window.open('https://github.com/ozcanonur', '_blank');
-  };
-
-  const redirectToLinkedin = () => {
-    window.open('https://www.linkedin.com/in/onur-ozcan-a5329b76/', '_blank');
   };
 
   return (
@@ -52,12 +46,7 @@ const Layout = ({ children }) => {
         </button>
         <div className={classes.socialMedia}>
           <img className={classes.socialMediaIcon} src={GithubIcon} alt='github link' onClick={redirectToGitHub} />
-          <img
-            className={classes.socialMediaIcon}
-            src={LinkedinIcon}
-            alt='linkedin link'
-            onClick={redirectToLinkedin}
-          />
+          <img className={classes.socialMediaIcon} src={LinkedinIcon} alt='linkedin link' onClick={redirectToLinkedin} />
         </div>
       </nav>
     </div>

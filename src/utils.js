@@ -66,7 +66,6 @@ function splitLetters(word) {
   wordArray.push(letters);
 }
 
-// Hook
 export function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
@@ -97,3 +96,13 @@ export function useWindowSize() {
 
   return windowSize;
 }
+
+export const redirectToGitHub = () => {
+  window.open('https://github.com/ozcanonur', '_blank');
+};
+
+export const redirectToLinkedin = () => {
+  window.open('https://www.linkedin.com/in/onur-ozcan-a5329b76/', '_blank');
+};
+
+export const convertRemToPixels = (rem) => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);

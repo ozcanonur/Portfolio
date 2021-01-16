@@ -29,7 +29,7 @@
   // }
 
   @media only screen and (max-width: 800px) {
-    margin-top: 0;
+    margin-top: 10rem;
   }
 }
 
@@ -134,6 +134,7 @@
 
   @media only screen and (max-width: 800px) {
     width: 100%;
+    margin-top: 30rem;
   }
 }
 
@@ -260,7 +261,7 @@
   display: flex;
   align-items: center;
 
-  margin-top: 150px;
+  margin-top: 15rem;
   width: max-content;
 
   & > button {
@@ -297,18 +298,31 @@
   z-index: -1;
 
   @media only screen and (max-width: 800px) {
-    height: 30vw;
+    display: none !important;
   }
 }
 
 .sphereContainer {
   margin-top: 28rem;
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 }
 
 .sphereWithContainer {
   margin-top: 20rem;
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
 }
 
 .wavyLines {
-  margin-top: 0;
+  margin-top: 10rem;
+  display: none;
+
+  @media only screen and (max-width: 800px) {
+    display: inherit;
+  }
 }
