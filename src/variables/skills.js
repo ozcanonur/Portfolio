@@ -1,6 +1,5 @@
 import ReactIcon from '../assets/svg/react_icon.svg';
 import ReduxIcon from '../assets/svg/redux_icon.svg';
-import JavascriptIcon from '../assets/svg/js.svg';
 import SassIcon from '../assets/svg/sass_icon.svg';
 import MuiIcon from '../assets/svg/mui_icon.svg';
 import GatsbyIcon from '../assets/svg/gatsby_icon.svg';
@@ -16,11 +15,6 @@ import SocketIcon from '../assets/svg/socket_icon.svg';
 import JestIcon from '../assets/svg/jest_icon.svg';
 
 export const leftSkills = [
-  {
-    icon: JavascriptIcon,
-    alt: 'javascript',
-    name: 'JavaScript ES6',
-  },
   {
     icon: TypescriptIcon,
     alt: 'typescript',

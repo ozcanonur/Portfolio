@@ -5,10 +5,10 @@ import Cube from '../../assets/svg/cube_3d.svg';
 import CubeContainer from '../../assets/svg/cube_container.svg';
 import CubeWithContainer from '../../assets/svg/cube_with_container.svg';
 import HorizontalLines from '../../assets/svg/horizontal_lines.svg';
+import WhiteCubeLine from '../../assets/svg/white_cube_line.svg';
 
 import classes from './skills.module.scss';
 
-import { getOffset } from '../../utils';
 import { leftSkills, rightSkills } from '../../variables/skills';
 
 const Skills = () => {
@@ -39,7 +39,6 @@ const Skills = () => {
     const moveCube = () => {
       if (!cube || !cubeContainer || !section) return;
 
-      // const aboveSkills = window.pageYOffset < section.getBoundingClientRect().top + window.pageYOffset - window.innerHeight / 2;
       const inSkills =
         window.pageYOffset >
         section.getBoundingClientRect().top + section.offsetHeight / 2 + window.pageYOffset - window.innerHeight / 2;
@@ -111,7 +110,7 @@ const Skills = () => {
       </div>
       <div className={classes.skillsContainer}>
         <div className={classes.skills}>
-          {leftSkills.map(({ icon, alt, name }, index) => (
+          {leftSkills.map(({ icon, alt, name }) => (
             <div key={name} className={classes.skill}>
               <img className={classes.skillIcon} src={icon} alt={alt} />
               <p className={classes.skillText}>{name}</p>
@@ -119,7 +118,7 @@ const Skills = () => {
           ))}
         </div>
         <div className={`${classes.skills} ${classes.rightSkills}`}>
-          {rightSkills.map(({ icon, alt, name }, index) => (
+          {rightSkills.map(({ icon, alt, name }) => (
             <div key={name} className={`${classes.skill} ${classes.rightSkill}`}>
               <p>{name}</p>
               <img
@@ -138,6 +137,24 @@ const Skills = () => {
         src={progressDone ? CubeWithContainer : CubeContainer}
         alt='cube container'
         ref={cubeContainerRef}
+      />
+      <img
+        className={classes.whiteCubeLine}
+        src={WhiteCubeLine}
+        alt='cube mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
+      <img
+        className={`${classes.whiteCubeLine} ${classes.whiteCubeLine2}`}
+        src={WhiteCubeLine}
+        alt='cube mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
+      <img
+        className={`${classes.whiteCubeLine} ${classes.whiteCubeLine3}`}
+        src={WhiteCubeLine}
+        alt='cube mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
       />
       <img className={classes.horizontalLines} src={HorizontalLines} alt='section seperator lines' />
     </section>

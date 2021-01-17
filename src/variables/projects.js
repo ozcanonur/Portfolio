@@ -3,6 +3,7 @@ import chemphoprologImg from '../assets/img/chemphoprolog.png';
 import discordImg from '../assets/img/discord.png';
 import heartspaceImg from '../assets/img/heartspace.png';
 
+import JavascriptIcon from '../assets/svg/js.svg'
 import ReactIcon from '../assets/svg/react_icon.svg';
 import ReduxIcon from '../assets/svg/redux_icon.svg';
 import SassIcon from '../assets/svg/sass_icon.svg';
@@ -165,6 +166,10 @@ export const projects = [
     websiteUrl: 'https://www.findheartspace.com/',
     githubUrl: 'https://github.com/ozcanonur/Heartspace',
     skills: [
+      {
+        name: 'JavaScript',
+        img: JavascriptIcon
+      },
       {
         name: 'React.js',
         img: ReactIcon,

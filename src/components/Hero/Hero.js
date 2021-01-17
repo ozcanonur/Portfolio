@@ -16,6 +16,8 @@ import HomeIcon from '../../assets/svg/home.svg';
 import MenuIcon from '../../assets/svg/menu_icon.svg';
 import CancelIcon from '../../assets/svg/cancel.svg';
 
+import WhiteTriangleLine from '../../assets/svg/white_triangle_line.svg';
+
 import { startWords, redirectToGitHub, redirectToLinkedin, getOffset } from '../../utils';
 
 import classes from './hero.module.scss';
@@ -174,6 +176,24 @@ const Hero = () => {
         alt='triangle with container'
         ref={triangleContainerRef}
       />
+      <img
+        className={classes.whiteTriangleLine}
+        src={WhiteTriangleLine}
+        alt='triangle mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
+      <img
+        className={`${classes.whiteTriangleLine} ${classes.whiteTriangleLine2}`}
+        src={WhiteTriangleLine}
+        alt='triangle mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
+      <img
+        className={`${classes.whiteTriangleLine} ${classes.whiteTriangleLine3}`}
+        src={WhiteTriangleLine}
+        alt='triangle mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
       <img className={classes.diagonalLines} src={DiagonalLines} alt='section seperator lines' />
       <>
         <div className={classes.mobileMenuContainer} onClick={toggleMobileMenu}>
@@ -216,46 +236,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-// function outerWidth(el) {
-//   var width = el.offsetWidth;
-//   var style = getComputedStyle(el);
-
-//   width += parseInt(style.marginLeft) + parseInt(style.marginRight);
-//   return width;
-// }
-
-// useEffect(() => {
-//   let last_known_scroll_position = 0;
-//   let ticking = false;
-
-//   const moveTriangle = (scroll_pos) => {
-//     if (!triangleRef.current || !triangleContainerRef.current) return;
-
-//     const containerPosition = triangleContainerRef.current.offsetTop;
-
-//     if (containerPosition - scroll_pos < 400) {
-//       setProgressDone(true);
-
-//       triangleRef.current.style.display = 'none';
-//     } else {
-//       setProgressDone(false);
-//       triangleRef.current.style.display = 'inherit';
-//       triangleRef.current.style.top = `calc(50% + ${scroll_pos}px)`;
-//       triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${scroll_pos / 11}deg)`;
-//     }
-//   };
-
-//   window.addEventListener('scroll', () => {
-//     last_known_scroll_position = window.scrollY;
-
-//     if (!ticking) {
-//       window.requestAnimationFrame(() => {
-//         moveTriangle(last_known_scroll_position);
-//         ticking = false;
-//       });
-
-//       ticking = true;
-//     }
-//   });
-// }, []);

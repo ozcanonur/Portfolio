@@ -73,7 +73,7 @@
   box-shadow: 0 1rem 2rem rgba($color-blue-dark, 0.8);
 
   width: 28vw;
-  padding: 6rem 4rem;
+  padding: 6rem;
 
   display: flex;
   flex-direction: column;
@@ -231,34 +231,6 @@
   @media only screen and (max-width: 800px) {
     display: none !important;
   }
-
-  // @media only screen and (min-width: 2100px) {
-  //   top: 4900px;
-  // }
-
-  // @media only screen and (max-width: 1700px) {
-  //   top: 4250px;
-  // }
-
-  // @media only screen and (max-width: 1500px) {
-  //   top: 4050px;
-  // }
-
-  // @media only screen and (max-width: 1200px) {
-  //   top: 3500px;
-  // }
-
-  // @media only screen and (max-width: 1000px) {
-  //   top: 3150px;
-  // }
-
-  // @media only screen and (max-width: 850px) {
-  //   top: 2900px;
-  // }
-
-  // @media only screen and (max-width: 600px) {
-  //   top: 2600px;
-  // }
 }
 
 .cube {
@@ -275,11 +247,54 @@
   }
 }
 
+.whiteCubeLine {
+  width: 15vw;
+  position: absolute;
+  left: 49.8%;
+  bottom: -2rem;
+  transform: translateX(-50.2%);
+  transition: all 0.2s;
+
+  animation: bounceDown 1s infinite;
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.whiteCubeLine2 {
+  transition: all 0.6s;
+  bottom: -4rem;
+}
+
+.whiteCubeLine3 {
+  transition: all 1s;
+  bottom: -6rem;
+}
+
 .horizontalLines {
   margin-top: 20rem;
   display: none;
 
   @media only screen and (max-width: 800px) {
     display: inherit;
+  }
+}
+
+@keyframes bounceDown {
+  0% {
+    transform: translate(-50.2%, 0);
+  }
+
+  20% {
+    transform: translate(-50.2%, 20px);
+  }
+
+  50% {
+    transform: translate(-50.2%, 0);
+  }
+
+  100% {
+    transform: translate(-50.2%, 0);
   }
 }

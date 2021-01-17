@@ -5,6 +5,7 @@ import Sphere from '../../assets/svg/sphere.svg';
 import SphereContainer from '../../assets/svg/sphere_container.svg';
 import SphereWithContainer from '../../assets/svg/sphere_with_container.svg';
 import WavyLines from '../../assets/svg/wavy_lines.svg';
+import WhiteSphereLine from '../../assets/svg/white_sphere_line.svg';
 
 import UrlIcon from '../../assets/svg/url_icon.svg';
 import GitHubIcon from '../../assets/svg/github_icon.svg';
@@ -158,7 +159,7 @@ const Projects = () => {
       </div>
       <div className={classes.projectsFooter}>
         <button onClick={redirectToGitHub}>And more on GitHub</button>
-        <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
+        <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' onClick={redirectToGitHub} />
       </div>
       <img
         className={progressDone ? classes.sphereWithContainer : classes.sphereContainer}
@@ -166,52 +167,27 @@ const Projects = () => {
         alt='sphere container'
         ref={sphereContainerRef}
       />
+      <img
+        className={classes.whiteSphereLine}
+        src={WhiteSphereLine}
+        alt='sphere mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
+      <img
+        className={`${classes.whiteSphereLine} ${classes.whiteSphereLine2}`}
+        src={WhiteSphereLine}
+        alt='sphere mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
+      <img
+        className={`${classes.whiteSphereLine} ${classes.whiteSphereLine3}`}
+        src={WhiteSphereLine}
+        alt='sphere mount effect'
+        style={{ opacity: progressDone ? 1 : 0 }}
+      />
       <img className={classes.wavyLines} src={WavyLines} alt='section separator lines' />
     </section>
   );
 };
 
 export default Projects;
-
-// useEffect(() => {
-//   let last_known_scroll_position = 0;
-//   let ticking = false;
-
-//   const moveSphere = (scroll_pos) => {
-//     if (!sphereRef.current || !sphereContainerRef.current || !sectionRef.current) return;
-
-//     const containerPosition = sphereContainerRef.current.offsetTop;
-//     const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20);
-
-//     const rotateAmount = (scroll_pos - startPosition) / 4;
-
-//     if (scroll_pos <= startPosition) {
-//       setProgressDone(false);
-//       sphereRef.current.style.display = 'inherit';
-//       sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-//       sphereRef.current.style.opacity = 1;
-//     } else if (scroll_pos + convertRemToPixels(33) > containerPosition) {
-//       setProgressDone(true);
-//       sphereRef.current.style.display = 'none';
-//     } else {
-//       setProgressDone(false);
-//       sphereRef.current.style.display = 'inherit';
-//       sphereRef.current.style.top = `calc(50% + ${scroll_pos - startPosition}px)`;
-//       sphereRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
-//       sphereRef.current.style.opacity = 0.7;
-//     }
-//   };
-
-//   window.addEventListener('scroll', () => {
-//     last_known_scroll_position = window.scrollY;
-
-//     if (!ticking) {
-//       window.requestAnimationFrame(() => {
-//         moveSphere(last_known_scroll_position);
-//         ticking = false;
-//       });
-
-//       ticking = true;
-//     }
-//   });
-// }, []);

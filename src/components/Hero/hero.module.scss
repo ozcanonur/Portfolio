@@ -154,6 +154,31 @@
   }
 }
 
+.whiteTriangleLine {
+  width: 15vw;
+  position: absolute;
+  left: 49.8%;
+  bottom: -3rem;
+  transform: translateX(-50.2%);
+  transition: all 0.2s;
+
+  animation: bounceDown 1s infinite;
+
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+}
+
+.whiteTriangleLine2 {
+  transition: all 0.6s;
+  bottom: -6rem;
+}
+
+.whiteTriangleLine3 {
+  transition: all 1s;
+  bottom: -9rem;
+}
+
 .triangleContainer {
   margin-top: 35rem;
 
@@ -161,31 +186,6 @@
   @media only screen and (max-width: 800px) {
     display: none;
   }
-
-  // position: absolute;
-  // @media only screen and (max-width: 1920px) {
-  //   top: 2100px;
-  // }
-
-  // @media only screen and (max-width: 1200px) {
-  //   top: 2000px;
-  // }
-
-  // @media only screen and (max-width: 1000px) {
-  //   top: 1850px;
-  // }
-
-  // @media only screen and (max-width: 850px) {
-  //   top: 1750px;
-  // }
-
-  // @media only screen and (max-width: 600px) {
-  //   top: 1650px;
-  // }
-
-  // @media only screen and (max-width: 400px) {
-  //   top: 1850px;
-  // }
 }
 
 .diagonalLines {
@@ -224,6 +224,24 @@
 
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes bounceDown {
+  0% {
+    transform: translate(-50.2%, 0);
+  }
+
+  20% {
+    transform: translate(-50.2%, 30px);
+  }
+
+  50% {
+    transform: translate(-50.2%, 0);
+  }
+
+  100% {
+    transform: translate(-50.2%, 0);
   }
 }
 
