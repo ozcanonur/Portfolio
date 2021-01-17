@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
+import axios from 'axios';
 
 import classes from './contact.module.scss';
 
 const Contact = () => {
-  const [subject, setSubject] = useState('');
-  const [fromEmail, setFromEmail] = useState('');
-  const [body, setBody] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const [messageSent, setMessageSent] = useState(false);
 
@@ -18,38 +19,28 @@ const Contact = () => {
   }, []);
 
   const nameOnChange = (e) => {
-    setSubject(e.target.value);
+    setName(e.target.value);
   };
 
   const emailOnChange = (e) => {
-    setFromEmail(e.target.value);
+    setEmail(e.target.value);
   };
 
   const messageOnChange = (e) => {
-    setBody(e.target.value);
+    setMessage(e.target.value);
   };
 
   const sendEmail = async () => {
-    const functionURL = 'https://avocado-shrimp-1219.twil.io/send-email';
-
-    const response = await fetch(functionURL, {
-      method: 'post',
-      header: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      body: new URLSearchParams({ fromEmail, subject, body }).toString(),
-    });
-
-    if (response.status === 200) {
+    try {
+      await axios.post('https://boiling-atoll-88308.herokuapp.com/send-email', { name, email, message });
       setMessageSent(true);
-    } else {
-      const error = await response.json();
+    } catch (error) {
       console.error(error);
     }
 
-    setSubject('');
-    setBody('');
-    setFromEmail('');
+    setName('');
+    setEmail('');
+    setMessage('');
   };
 
   return (
@@ -65,16 +56,16 @@ const Contact = () => {
         <div className={classes.topRow}>
           <div className={classes.nameContainer}>
             <label htmlFor='contact-name'>Name</label>
-            <input className={classes.nameInput} id='contact-name' value={subject} onChange={nameOnChange} />
+            <input className={classes.nameInput} id='contact-name' value={name} onChange={nameOnChange} />
           </div>
           <div className={classes.emailContainer}>
             <label htmlFor='contact-email'>Your e-mail</label>
-            <input className={classes.emailInput} id='contact-email' value={fromEmail} onChange={emailOnChange} />
+            <input className={classes.emailInput} id='contact-email' value={email} onChange={emailOnChange} />
           </div>
         </div>
         <div className={classes.messageContainer}>
           <label htmlFor='contact-message'>Message</label>
-          <textarea className={classes.messageInput} id='contact-message' value={body} onChange={messageOnChange} />
+          <textarea className={classes.messageInput} id='contact-message' value={message} onChange={messageOnChange} />
         </div>
         <p className={classes.sendMessage} onClick={sendEmail}>
           Send Message
