@@ -36,30 +36,29 @@ const Hero = () => {
     }, 2000);
   }, []);
 
-  (function () {
-    var throttle = function (type, name, obj) {
-      var obj = obj || window;
-      var running = false;
-      var func = function () {
-        if (running) {
-          return;
-        }
-        running = true;
-        requestAnimationFrame(function () {
-          obj.dispatchEvent(new CustomEvent(name));
-          running = false;
-        });
-      };
-      obj.addEventListener(type, func);
-    };
-    throttle('scroll', 'optimizedScroll');
-  })();
-
   const triangleRef = useRef(null);
   const triangleContainerRef = useRef(null);
   const titleContainerRef = useRef(null);
 
   useEffect(() => {
+    (function () {
+      var throttle = function (type, name, obj) {
+        var obj = obj || window;
+        var running = false;
+        var func = function () {
+          if (running) return;
+
+          running = true;
+          requestAnimationFrame(function () {
+            obj.dispatchEvent(new CustomEvent(name));
+            running = false;
+          });
+        };
+        obj.addEventListener(type, func);
+      };
+      throttle('scroll', 'optimizedScroll');
+    })();
+
     const triangle = triangleRef.current;
     const triangleContainer = triangleContainerRef.current;
     const titleContainer = titleContainerRef.current;
