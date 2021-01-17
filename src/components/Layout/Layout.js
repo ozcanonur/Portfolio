@@ -32,6 +32,13 @@ const Layout = ({ children }) => {
       <Helmet title='Onur Ozcan'>
         <meta name='description' content='Onur Ozcan personal portfolio website.' />
         <html lang='en' />
+        <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+        <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
+        <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
+        <link rel='manifest' href='/site.webmanifest' />
+        <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
+        <meta name='msapplication-TileColor' content='#da532c' />
+        <meta name='theme-color' content='#ffffff'></meta>
       </Helmet>
       <nav className={`${classes.sidebar} ${classes.sidebarLeft}`}>
         <img className={classes.icon} src={HomeIcon} alt='home' onClick={scrollToHero} />
@@ -43,7 +50,7 @@ const Layout = ({ children }) => {
       </nav>
       <main className={classes.content}>{children}</main>
       <nav className={`${classes.sidebar} ${classes.sidebarRight}`}>
-        <div />
+        <img className={`${classes.icon} ${classes.homeIcon2}`} src={HomeIcon} alt='home' onClick={scrollToHero} />
         <button className={classes.contactMeText} onClick={scrollToContact}>
           Contact Me
         </button>
