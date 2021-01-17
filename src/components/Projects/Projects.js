@@ -80,7 +80,7 @@ const Projects = () => {
         </div>
       </div>
       <div className={classes.projectsContainer}>
-        {projects.map(({ title, description, img, githubUrl, websiteUrl }) => (
+        {projects.map(({ title, description, img, githubUrl, websiteUrl, skills, alt }) => (
           <div key={title} className={classes.project} data-aos='fade-in'>
             <div className={classes.projectVisual}>
               <img
@@ -93,6 +93,11 @@ const Projects = () => {
             <div className={classes.projectDescriptionContainer}>
               <h3 className={classes.projectTitle}>{title}</h3>
               <article className={classes.projectDescription}>{description}</article>
+              <div className={classes.skills}>
+                {skills.map(({ img, name }) => (
+                  <img key={name} className={classes.skill} src={img} alt={name} title={name} />
+                ))}
+              </div>
               <div className={classes.projectLinksContainer}>
                 <div className={classes.projectLink}>
                   <button

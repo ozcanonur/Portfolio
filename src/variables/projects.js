@@ -3,6 +3,23 @@ import chemphoprologImg from '../assets/img/chemphoprolog.png';
 import discordImg from '../assets/img/discord.png';
 import heartspaceImg from '../assets/img/heartspace.png';
 
+import ReactIcon from '../assets/svg/react_icon.svg';
+import ReduxIcon from '../assets/svg/redux_icon.svg';
+import HTMLCSSIcon from '../assets/svg/htmlcss_icon.svg';
+import JavascriptIcon from '../assets/svg/js.svg';
+import SassIcon from '../assets/svg/sass_icon.svg';
+import MuiIcon from '../assets/svg/mui_icon.svg';
+import GatsbyIcon from '../assets/svg/gatsby_icon.svg';
+import NetlifyIcon from '../assets/svg/netlify.svg';
+
+import NodeIcon from '../assets/svg/node_icon.svg';
+import TypescriptIcon from '../assets/svg/ts_icon.svg';
+import MongoIcon from '../assets/svg/mongo_icon.svg';
+import PostgresIcon from '../assets/svg/postgres_icon.svg';
+import HerokuIcon from '../assets/svg/heroku.svg';
+import SocketIcon from '../assets/svg/socket_icon.svg';
+import JestIcon from '../assets/svg/jest_icon.svg';
+
 export const projects = [
   {
     title: 'PITDB',
@@ -14,6 +31,48 @@ export const projects = [
     img: pitdbImg,
     websiteUrl: 'http://pitdb.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/PITDB',
+    skills: [
+      {
+        name: 'HTML5 / CSS3',
+        img: HTMLCSSIcon,
+      },
+      {
+        name: 'JavaScript (ES6)',
+        img: JavascriptIcon,
+      },
+      {
+        name: 'TypeScript',
+        img: TypescriptIcon,
+      },
+      {
+        name: 'React.js',
+        img: ReactIcon,
+      },
+      {
+        name: 'Redux',
+        img: ReduxIcon,
+      },
+      {
+        name: 'Material UI',
+        img: MuiIcon,
+      },
+      {
+        name: 'SASS',
+        img: SassIcon,
+      },
+      {
+        name: 'Node.js',
+        img: NodeIcon,
+      },
+      {
+        name: 'MongoDB',
+        img: MongoIcon,
+      },
+      {
+        name: 'Jest',
+        img: JestIcon,
+      },
+    ],
   },
   {
     title: 'Chemphoprolog',
@@ -25,6 +84,44 @@ export const projects = [
     img: chemphoprologImg,
     websiteUrl: 'http://chemphoprolog.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/chemphoprolog',
+    skills: [
+      {
+        name: 'HTML5 / CSS3',
+        img: HTMLCSSIcon,
+      },
+      {
+        name: 'JavaScript (ES6)',
+        img: JavascriptIcon,
+      },
+      {
+        name: 'TypeScript',
+        img: TypescriptIcon,
+      },
+      {
+        name: 'React.js',
+        img: ReactIcon,
+      },
+      {
+        name: 'Redux',
+        img: ReduxIcon,
+      },
+      {
+        name: 'Material UI',
+        img: MuiIcon,
+      },
+      {
+        name: 'SASS',
+        img: SassIcon,
+      },
+      {
+        name: 'Node.js',
+        img: NodeIcon,
+      },
+      {
+        name: 'PostgreSQL',
+        img: PostgresIcon,
+      },
+    ],
   },
   {
     title: 'Discord',
@@ -36,6 +133,52 @@ export const projects = [
     img: discordImg,
     websiteUrl: 'http://ozcanonur-discord.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/discord-clone',
+    skills: [
+      {
+        name: 'HTML5 / CSS3',
+        img: HTMLCSSIcon,
+      },
+      {
+        name: 'JavaScript (ES6)',
+        img: JavascriptIcon,
+      },
+      {
+        name: 'TypeScript',
+        img: TypescriptIcon,
+      },
+      {
+        name: 'React.js',
+        img: ReactIcon,
+      },
+      {
+        name: 'Redux',
+        img: ReduxIcon,
+      },
+      {
+        name: 'Material UI',
+        img: MuiIcon,
+      },
+      {
+        name: 'SASS',
+        img: SassIcon,
+      },
+      {
+        name: 'Node.js',
+        img: NodeIcon,
+      },
+      {
+        name: 'MongoDB',
+        img: MongoIcon,
+      },
+      {
+        name: 'Socket.io',
+        img: SocketIcon,
+      },
+      {
+        name: 'Heroku',
+        img: HerokuIcon,
+      },
+    ],
   },
   {
     title: 'Heartspace',
@@ -47,5 +190,39 @@ export const projects = [
     img: heartspaceImg,
     websiteUrl: 'https://www.findheartspace.com/',
     githubUrl: 'https://github.com/ozcanonur/Heartspace',
+    skills: [
+      {
+        name: 'HTML5 / CSS3',
+        img: HTMLCSSIcon,
+      },
+      {
+        name: 'JavaScript (ES6)',
+        img: JavascriptIcon,
+      },
+      {
+        name: 'React.js',
+        img: ReactIcon,
+      },
+      {
+        name: 'Gatsby.js',
+        img: GatsbyIcon,
+      },
+      {
+        name: 'SASS',
+        img: SassIcon,
+      },
+      {
+        name: 'Node.js',
+        img: NodeIcon,
+      },
+      {
+        name: 'Heroku',
+        img: HerokuIcon,
+      },
+      {
+        name: 'Netlify',
+        img: NetlifyIcon,
+      },
+    ],
   },
 ];

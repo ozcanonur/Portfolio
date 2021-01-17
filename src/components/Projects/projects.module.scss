@@ -331,3 +331,24 @@
     display: inherit;
   }
 }
+
+.skills {
+  margin-top: 2rem;
+  display: flex;
+
+  & > img:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  @media only screen and (max-width: 800px) {
+    margin-top: 4rem;
+  }
+}
+
+.skill {
+  height: 2.5rem;
+
+  @media only screen and (max-width: 800px) {
+    height: 3.5rem;
+  }
+}

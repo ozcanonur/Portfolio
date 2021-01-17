@@ -101,13 +101,14 @@ const Hero = () => {
   const defaultStyle = {
     transition: `opacity ${duration}ms ease-in-out`,
     opacity: 0,
+    zIndex: -9999,
   };
 
   const transitionStyles = {
-    entering: { opacity: 1 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
+    entering: { opacity: 1, zIndex: 90 },
+    entered: { opacity: 1, zIndex: 90 },
+    exiting: { opacity: 0, zIndex: -9999 },
+    exited: { opacity: 0, zIndex: -9999 },
   };
 
   return (
