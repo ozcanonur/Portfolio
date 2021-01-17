@@ -10,11 +10,14 @@ import UrlIcon from '../../assets/svg/url_icon.svg';
 import GitHubIcon from '../../assets/svg/github_icon.svg';
 
 import { projects } from '../../variables/projects';
-import { redirectToGitHub, convertRemToPixels } from '../../utils';
+import { redirectToGitHub } from '../../utils';
 
 import classes from './projects.module.scss';
 
 const Projects = () => {
+  const [sphereRotation, setSphereRotation] = useState(0);
+  const [sphereOpacity, setSphereOpacity] = useState(1);
+  const [progressStarted, setProgressStarted] = useState(false);
   const [progressDone, setProgressDone] = useState(false);
 
   useEffect(() => {
@@ -29,53 +32,80 @@ const Projects = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    let last_known_scroll_position = 0;
-    let ticking = false;
+    const sphere = sphereRef.current;
+    const sphereContainer = sphereContainerRef.current;
+    const section = sectionRef.current;
 
-    const moveSphere = (scroll_pos) => {
-      if (!sphereRef.current || !sphereContainerRef.current || !sectionRef.current) return;
+    const moveSphere = () => {
+      if (!sphere || !sphereContainer || !section) return;
 
-      const containerPosition = sphereContainerRef.current.offsetTop;
-      const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20);
+      // const aboveSkills = window.pageYOffset < section.getBoundingClientRect().top + window.pageYOffset - window.innerHeight / 2;
+      const inProjects =
+        window.pageYOffset >
+        section.getBoundingClientRect().top + section.offsetHeight / 2 + window.pageYOffset - window.innerHeight / 2;
+      const belowProjects =
+        window.pageYOffset >
+        sphereContainer.getBoundingClientRect().top +
+          window.pageYOffset +
+          sphereContainer.offsetHeight / 4 -
+          window.innerHeight / 2;
 
-      const rotateAmount = (scroll_pos - startPosition) / 4;
+      const totalProgressHeight =
+        sphereContainer.getBoundingClientRect().top +
+        sphereContainer.offsetHeight / 4 -
+        window.innerHeight / 2 -
+        (section.getBoundingClientRect().top + section.offsetHeight / 4 - window.innerHeight / 2);
 
-      if (scroll_pos <= startPosition) {
-        setProgressDone(false);
-        sphereRef.current.style.display = 'inherit';
-        sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-        sphereRef.current.style.opacity = 1;
-      } else if (scroll_pos + convertRemToPixels(33) > containerPosition) {
+      const degreePerPx = 360 / totalProgressHeight;
+
+      // We are done, below the projects
+      if (belowProjects) {
         setProgressDone(true);
-        sphereRef.current.style.display = 'none';
-      } else {
+        setProgressStarted(false);
+        setSphereOpacity(1);
+      } // We are in the projects section, progress is ON
+      else if (inProjects) {
+        setProgressStarted(true);
         setProgressDone(false);
-        sphereRef.current.style.display = 'inherit';
-        sphereRef.current.style.top = `calc(50% + ${scroll_pos - startPosition}px)`;
-        sphereRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
-        sphereRef.current.style.opacity = 0.7;
+
+        const progressSoFar = -section.getBoundingClientRect().top - section.offsetHeight / 2 + window.innerHeight / 2;
+        setSphereRotation(`${progressSoFar * degreePerPx}`);
+
+        setSphereOpacity(0.8);
+      }
+      // We are above the projects section, progress didn't start yet
+      else {
+        setProgressStarted(false);
+        setProgressDone(false);
+        setSphereRotation(0);
+        setSphereOpacity(1);
       }
     };
 
-    window.addEventListener('scroll', () => {
-      last_known_scroll_position = window.scrollY;
+    window.addEventListener('optimizedScroll', moveSphere);
 
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          moveSphere(last_known_scroll_position);
-          ticking = false;
-        });
-
-        ticking = true;
-      }
-    });
+    return () => {
+      window.removeEventListener('optimizedScroll', moveSphere);
+    };
   }, []);
 
   return (
-    <section className={classes.section} id='projects' ref={sectionRef}>
-      <div style={{ position: 'relative' }}>
+    <section className={classes.section} id='projects'>
+      <div style={{ position: 'relative' }} ref={sectionRef}>
+        {!progressDone ? (
+          <img
+            className={classes.sphere}
+            src={Sphere}
+            alt='sphere'
+            ref={sphereRef}
+            style={{
+              position: progressStarted ? 'fixed' : 'absolute',
+              transform: `translate(-50%, -50%) rotate(${sphereRotation}deg)`,
+              opacity: sphereOpacity,
+            }}
+          />
+        ) : null}
         <div className={classes.titleContainer}>
-          <img className={classes.sphere} src={Sphere} alt='sphere' ref={sphereRef} />
           <h2 className={classes.title}>Projects</h2>
         </div>
       </div>
@@ -142,3 +172,46 @@ const Projects = () => {
 };
 
 export default Projects;
+
+// useEffect(() => {
+//   let last_known_scroll_position = 0;
+//   let ticking = false;
+
+//   const moveSphere = (scroll_pos) => {
+//     if (!sphereRef.current || !sphereContainerRef.current || !sectionRef.current) return;
+
+//     const containerPosition = sphereContainerRef.current.offsetTop;
+//     const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20);
+
+//     const rotateAmount = (scroll_pos - startPosition) / 4;
+
+//     if (scroll_pos <= startPosition) {
+//       setProgressDone(false);
+//       sphereRef.current.style.display = 'inherit';
+//       sphereRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
+//       sphereRef.current.style.opacity = 1;
+//     } else if (scroll_pos + convertRemToPixels(33) > containerPosition) {
+//       setProgressDone(true);
+//       sphereRef.current.style.display = 'none';
+//     } else {
+//       setProgressDone(false);
+//       sphereRef.current.style.display = 'inherit';
+//       sphereRef.current.style.top = `calc(50% + ${scroll_pos - startPosition}px)`;
+//       sphereRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
+//       sphereRef.current.style.opacity = 0.7;
+//     }
+//   };
+
+//   window.addEventListener('scroll', () => {
+//     last_known_scroll_position = window.scrollY;
+
+//     if (!ticking) {
+//       window.requestAnimationFrame(() => {
+//         moveSphere(last_known_scroll_position);
+//         ticking = false;
+//       });
+
+//       ticking = true;
+//     }
+//   });
+// }, []);

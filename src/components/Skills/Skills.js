@@ -8,10 +8,12 @@ import HorizontalLines from '../../assets/svg/horizontal_lines.svg';
 
 import classes from './skills.module.scss';
 
-import { convertRemToPixels } from '../../utils';
+import { getOffset } from '../../utils';
 import { leftSkills, rightSkills } from '../../variables/skills';
 
 const Skills = () => {
+  const [cubeRotation, setCubeRotation] = useState(0);
+  const [progressStarted, setProgressStarted] = useState(false);
   const [progressDone, setProgressDone] = useState(false);
 
   useEffect(() => {
@@ -25,49 +27,63 @@ const Skills = () => {
   const cubeContainerRef = useRef(null);
   const sectionRef = useRef(null);
 
+  // offsetTop > relative to parent
+  // getBoundingClientRect() > relative to viewport
+  // getBoundingClientRect() + window.pageYOffset > relative to window
+
   useEffect(() => {
-    let last_known_scroll_position = 0;
-    let ticking = false;
+    const cube = cubeRef.current;
+    const cubeContainer = cubeContainerRef.current;
+    const section = sectionRef.current;
 
-    const moveCube = (scroll_pos) => {
-      if (!cubeRef.current || !cubeContainerRef.current || !sectionRef.current) return;
+    const moveCube = () => {
+      if (!cube || !cubeContainer || !section) return;
 
-      const containerPosition = cubeContainerRef.current.offsetTop;
-      const startPosition = sectionRef.current.offsetTop - convertRemToPixels(20) - 200;
+      // const aboveSkills = window.pageYOffset < section.getBoundingClientRect().top + window.pageYOffset - window.innerHeight / 2;
+      const inSkills =
+        window.pageYOffset >
+        section.getBoundingClientRect().top + section.offsetHeight / 2 + window.pageYOffset - window.innerHeight / 2;
+      const belowSkills =
+        window.pageYOffset >
+        cubeContainer.getBoundingClientRect().top + window.pageYOffset + cubeContainer.offsetHeight / 2 - window.innerHeight / 2;
 
-      const rotateAmount = (scroll_pos - startPosition) / 4;
+      const totalProgressHeight =
+        cubeContainer.getBoundingClientRect().top +
+        cubeContainer.offsetHeight / 2 -
+        window.innerHeight / 2 -
+        (section.getBoundingClientRect().top + section.offsetHeight / 2 - window.innerHeight / 2);
 
-      if (scroll_pos <= startPosition) {
-        setProgressDone(false);
-        cubeRef.current.style.display = 'inherit';
-        cubeRef.current.style.transform = `translate(-50%, -50%) rotate(0)`;
-      } else if (containerPosition + startPosition - 50 < scroll_pos) {
+      const degreePerPx = 360 / totalProgressHeight;
+
+      // We are done, below the skills
+      if (belowSkills) {
         setProgressDone(true);
-        cubeRef.current.style.display = 'none';
-      } else {
+        setProgressStarted(false);
+      } // We are in the skills section, progress is ON
+      else if (inSkills) {
+        setProgressStarted(true);
         setProgressDone(false);
-        cubeRef.current.style.display = 'inherit';
-        cubeRef.current.style.top = `calc(50% + ${scroll_pos - startPosition}px)`;
-        cubeRef.current.style.transform = `translate(-50%, -50%) rotate(${rotateAmount}deg)`;
+
+        const progressSoFar = -section.getBoundingClientRect().top - section.offsetHeight / 2 + window.innerHeight / 2;
+        setCubeRotation(`${progressSoFar * degreePerPx}`);
+      }
+      // We are above the skills section, progress didn't start yet
+      else {
+        setProgressStarted(false);
+        setProgressDone(false);
+        setCubeRotation(0);
       }
     };
 
-    window.addEventListener('scroll', () => {
-      last_known_scroll_position = window.scrollY;
+    window.addEventListener('optimizedScroll', moveCube);
 
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          moveCube(last_known_scroll_position);
-          ticking = false;
-        });
-
-        ticking = true;
-      }
-    });
+    return () => {
+      window.removeEventListener('optimizedScroll', moveCube);
+    };
   }, []);
 
   return (
-    <section className={classes.section} id='skills' data-aos='fade-in' ref={sectionRef}>
+    <section className={classes.section} id='skills' data-aos='fade-in'>
       <div
         style={{
           position: 'relative',
@@ -75,8 +91,20 @@ const Skills = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}
+        ref={sectionRef}
       >
-        <img className={classes.cube} src={Cube} alt='cube' ref={cubeRef} />
+        {!progressDone ? (
+          <img
+            className={classes.cube}
+            src={Cube}
+            alt='cube'
+            ref={cubeRef}
+            style={{
+              position: progressStarted ? 'fixed' : 'absolute',
+              transform: `translate(-50%, -50%) rotate(${cubeRotation}deg)`,
+            }}
+          />
+        ) : null}
         <div className={classes.titleContainer}>
           <h1 className={classes.title}>Skills</h1>
         </div>
