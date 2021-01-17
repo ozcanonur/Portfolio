@@ -106,3 +106,5 @@ export const redirectToLinkedin = () => {
 };
 
 export const convertRemToPixels = (rem) => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+export const getOffset = (element, container) => container.offsetTop + container.offsetHeight / 2 - element.offsetHeight / 2;

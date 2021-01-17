@@ -16,11 +16,12 @@ import HomeIcon from '../../assets/svg/home.svg';
 import MenuIcon from '../../assets/svg/menu_icon.svg';
 import CancelIcon from '../../assets/svg/cancel.svg';
 
-import { startWords, redirectToGitHub, redirectToLinkedin } from '../../utils';
+import { startWords, redirectToGitHub, redirectToLinkedin, getOffset } from '../../utils';
 
 import classes from './hero.module.scss';
 
 const Hero = () => {
+  const [triangleRotation, setTriangleRotation] = useState(0);
   const [progressDone, setProgressDone] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,42 +36,52 @@ const Hero = () => {
     }, 2000);
   }, []);
 
+  (function () {
+    var throttle = function (type, name, obj) {
+      var obj = obj || window;
+      var running = false;
+      var func = function () {
+        if (running) {
+          return;
+        }
+        running = true;
+        requestAnimationFrame(function () {
+          obj.dispatchEvent(new CustomEvent(name));
+          running = false;
+        });
+      };
+      obj.addEventListener(type, func);
+    };
+    throttle('scroll', 'optimizedScroll');
+  })();
+
   const triangleRef = useRef(null);
   const triangleContainerRef = useRef(null);
+  const titleContainerRef = useRef(null);
 
   useEffect(() => {
-    let last_known_scroll_position = 0;
-    let ticking = false;
+    const triangle = triangleRef.current;
+    const triangleContainer = triangleContainerRef.current;
+    const titleContainer = titleContainerRef.current;
 
-    const moveTriangle = (scroll_pos) => {
-      if (!triangleRef.current || !triangleContainerRef.current) return;
+    const triangleInitialOffset = getOffset(triangle, titleContainer);
 
-      const containerPosition = triangleContainerRef.current.offsetTop;
+    const moveTriangle = () => {
+      if (!triangle || !triangleContainer) return;
 
-      if (containerPosition - scroll_pos < 400) {
+      if (window.pageYOffset > triangleContainer.offsetTop - triangleInitialOffset) {
         setProgressDone(true);
-
-        triangleRef.current.style.display = 'none';
       } else {
         setProgressDone(false);
-        triangleRef.current.style.display = 'inherit';
-        triangleRef.current.style.top = `calc(50% + ${scroll_pos}px)`;
-        triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${scroll_pos / 11}deg)`;
+        setTriangleRotation(window.pageYOffset / 11);
       }
     };
 
-    window.addEventListener('scroll', () => {
-      last_known_scroll_position = window.scrollY;
+    window.addEventListener('optimizedScroll', moveTriangle);
 
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          moveTriangle(last_known_scroll_position);
-          ticking = false;
-        });
-
-        ticking = true;
-      }
-    });
+    return () => {
+      window.removeEventListener('optimizedScroll', moveTriangle);
+    };
   }, []);
 
   const toggleMobileMenu = () => {
@@ -116,14 +127,22 @@ const Hero = () => {
       <div className={classes.homeIconContainer} onClick={scrollToHero}>
         <img className={classes.homeIcon} src={HomeIcon} alt='home' />
       </div>
-      <div className={classes.titleContainer}>
+      <div className={classes.titleContainer} ref={titleContainerRef}>
         <p className={classes.copyright}>&copy; Onur Ozcan 2021</p>
         <div className={classes.socialMedia}>
           <img className={classes.socialMediaIcon} src={GithubIcon} alt='github link' onClick={redirectToGitHub} />
           <img className={classes.socialMediaIcon} src={LinkedinIcon} alt='linkedin link' onClick={redirectToLinkedin} />
         </div>
         <div className={classes.triangleBg} />
-        <img className={classes.triangle} src={Triangle} alt='3d triangle' ref={triangleRef} />
+        {!progressDone ? (
+          <img
+            className={classes.triangle}
+            src={Triangle}
+            alt='3d triangle'
+            ref={triangleRef}
+            style={{ transform: `translate(-50%, -50%)  rotate(${triangleRotation}deg)` }}
+          />
+        ) : null}
         <h1 className={classes.title}>
           <span className='word' style={{ opacity: 1 }}>
             Fullstack&nbsp;Developer.
@@ -216,3 +235,46 @@ const Hero = () => {
 };
 
 export default Hero;
+
+// function outerWidth(el) {
+//   var width = el.offsetWidth;
+//   var style = getComputedStyle(el);
+
+//   width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+//   return width;
+// }
+
+// useEffect(() => {
+//   let last_known_scroll_position = 0;
+//   let ticking = false;
+
+//   const moveTriangle = (scroll_pos) => {
+//     if (!triangleRef.current || !triangleContainerRef.current) return;
+
+//     const containerPosition = triangleContainerRef.current.offsetTop;
+
+//     if (containerPosition - scroll_pos < 400) {
+//       setProgressDone(true);
+
+//       triangleRef.current.style.display = 'none';
+//     } else {
+//       setProgressDone(false);
+//       triangleRef.current.style.display = 'inherit';
+//       triangleRef.current.style.top = `calc(50% + ${scroll_pos}px)`;
+//       triangleRef.current.style.transform = `translate(-50%, -50%) rotate(${scroll_pos / 11}deg)`;
+//     }
+//   };
+
+//   window.addEventListener('scroll', () => {
+//     last_known_scroll_position = window.scrollY;
+
+//     if (!ticking) {
+//       window.requestAnimationFrame(() => {
+//         moveTriangle(last_known_scroll_position);
+//         ticking = false;
+//       });
+
+//       ticking = true;
+//     }
+//   });
+// }, []);
