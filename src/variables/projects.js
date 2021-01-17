@@ -5,8 +5,6 @@ import heartspaceImg from '../assets/img/heartspace.png';
 
 import ReactIcon from '../assets/svg/react_icon.svg';
 import ReduxIcon from '../assets/svg/redux_icon.svg';
-import HTMLCSSIcon from '../assets/svg/htmlcss_icon.svg';
-import JavascriptIcon from '../assets/svg/js.svg';
 import SassIcon from '../assets/svg/sass_icon.svg';
 import MuiIcon from '../assets/svg/mui_icon.svg';
 import GatsbyIcon from '../assets/svg/gatsby_icon.svg';
@@ -32,14 +30,6 @@ export const projects = [
     websiteUrl: 'http://pitdb.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/PITDB',
     skills: [
-      {
-        name: 'HTML5 / CSS3',
-        img: HTMLCSSIcon,
-      },
-      {
-        name: 'JavaScript (ES6)',
-        img: JavascriptIcon,
-      },
       {
         name: 'TypeScript',
         img: TypescriptIcon,
@@ -86,14 +76,6 @@ export const projects = [
     githubUrl: 'https://github.com/ozcanonur/chemphoprolog',
     skills: [
       {
-        name: 'HTML5 / CSS3',
-        img: HTMLCSSIcon,
-      },
-      {
-        name: 'JavaScript (ES6)',
-        img: JavascriptIcon,
-      },
-      {
         name: 'TypeScript',
         img: TypescriptIcon,
       },
@@ -134,14 +116,6 @@ export const projects = [
     websiteUrl: 'http://ozcanonur-discord.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/discord-clone',
     skills: [
-      {
-        name: 'HTML5 / CSS3',
-        img: HTMLCSSIcon,
-      },
-      {
-        name: 'JavaScript (ES6)',
-        img: JavascriptIcon,
-      },
       {
         name: 'TypeScript',
         img: TypescriptIcon,
@@ -191,14 +165,6 @@ export const projects = [
     websiteUrl: 'https://www.findheartspace.com/',
     githubUrl: 'https://github.com/ozcanonur/Heartspace',
     skills: [
-      {
-        name: 'HTML5 / CSS3',
-        img: HTMLCSSIcon,
-      },
-      {
-        name: 'JavaScript (ES6)',
-        img: JavascriptIcon,
-      },
       {
         name: 'React.js',
         img: ReactIcon,
