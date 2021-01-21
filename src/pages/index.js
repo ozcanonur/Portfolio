@@ -12,24 +12,6 @@ import '../normalize.scss';
 import '../style.scss';
 import 'aos/dist/aos.css';
 
-(function () {
-  var throttle = function (type, name, obj) {
-    var obj = obj || window;
-    var running = false;
-    var func = function () {
-      if (running) return;
-
-      running = true;
-      requestAnimationFrame(function () {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    };
-    obj.addEventListener(type, func);
-  };
-  throttle('scroll', 'optimizedScroll');
-})();
-
 const Index = () => {
   return (
     <div className={classes.site}>
