@@ -111,7 +111,7 @@ const Projects = () => {
         </div>
       </div>
       <div className={classes.projectsContainer}>
-        {projects.map(({ title, description, img, githubUrl, websiteUrl, skills, alt }) => (
+        {projects.map(({ title, description, img, githubUrl, websiteUrl, skills }) => (
           <div key={title} className={classes.project} data-aos='fade-in'>
             <div className={classes.projectVisual}>
               <img

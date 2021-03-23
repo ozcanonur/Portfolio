@@ -1,9 +1,9 @@
-import pitdbImg from '../assets/img/pitdb.png';
+import pitdbImg from '../assets/img/pitdb_high.png';
 import chemphoprologImg from '../assets/img/chemphoprolog.png';
 import discordImg from '../assets/img/discord.png';
 import heartspaceImg from '../assets/img/heartspace.png';
 
-import JavascriptIcon from '../assets/svg/js.svg'
+import JavascriptIcon from '../assets/svg/js.svg';
 import ReactIcon from '../assets/svg/react_icon.svg';
 import ReduxIcon from '../assets/svg/redux_icon.svg';
 import SassIcon from '../assets/svg/sass_icon.svg';
@@ -22,11 +22,7 @@ import JestIcon from '../assets/svg/jest_icon.svg';
 export const projects = [
   {
     title: 'PITDB',
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
+    description: `The Queen Mary University of London Bioinformatics Team was looking to build a web portal for researchers so that they can showcase their findings from PIT(proteomics informed by transcriptomics) experiments. A strong online platform was needed to support the publication, that's where I came in. PITDB includes many custom visualisation tailored for bioinformatics, such as confidence interval charts, interactive figures and the most challanging of all, a gene browser where users can browse through different transcripts to compare & contrast.`,
     img: pitdbImg,
     websiteUrl: 'http://pitdb.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/PITDB',
@@ -63,15 +59,16 @@ export const projects = [
         name: 'Jest',
         img: JestIcon,
       },
+      ,
+      {
+        name: 'Heroku',
+        img: HerokuIcon,
+      },
     ],
   },
   {
     title: 'Chemphoprolog',
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
+    description: `The initial project I was hired for at The Queen Mary University of London was to help analyse experimental phosphoproteomics data, discover novel findings and create a web portal for them. The most impressive part of the findings and the website turned out to be the pathway analysis, where users can browse through various novel kinase signaling pathways on the animated custom pathway visualisation and track the chain reactions with the help of explanations at every step.`,
     img: chemphoprologImg,
     websiteUrl: 'http://chemphoprolog.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/chemphoprolog',
@@ -104,15 +101,16 @@ export const projects = [
         name: 'PostgreSQL',
         img: PostgresIcon,
       },
+      ,
+      {
+        name: 'Heroku',
+        img: HerokuIcon,
+      },
     ],
   },
   {
     title: 'Discord',
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
+    description: `Throughout all my personal projects, this is my favorite. A clone of discord, an instant messaging and digital distribution platform designed for creating communities. Most gamers would know that discord is a part of our daily lives. The inspiration came from the desire to attempt to create something I use daily, along with learning real-time communication via sockets. It turned out to be quite challenging, especially the time commitment needed while I was busy with my full-time job. Most of the important functionality is intact, check it out!`,
     img: discordImg,
     websiteUrl: 'http://ozcanonur-discord.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/discord-clone',
@@ -157,18 +155,14 @@ export const projects = [
   },
   {
     title: 'Heartspace',
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta nemo necessitatibus labore, impedit in
-              maxime, sapiente nihil dolore quis sint quaerat nostrum voluptate inventore ab quam, eum mollitia cumque
-              porro nesciunt possimus architecto sed expedita. Non consectetur maiores qui? Maxime a dolor autem quidem
-              repellat explicabo quam recusandae, velit nulla accusantium alias eum quas aperiam ab earum perferendis
-              veniam dicta at. Vel quae id eveniet tempore ex omnis eaque.`,
+    description: `A close friend was planning to start his own start-up company with the aim of helping couples develop healthier relationships. While he, himself had a lot of experience with mobile development, he was not confident with web. I volunteered to develop their website, Heartspace. The aim at the start was to just create a brochure website with good SEO and performance, but it turned out to be something much more than that. We added an interactive chat-based relationship test, which was then decided to become the MVP.`,
     img: heartspaceImg,
     websiteUrl: 'https://www.findheartspace.com/',
     githubUrl: 'https://github.com/ozcanonur/Heartspace',
     skills: [
       {
         name: 'JavaScript',
-        img: JavascriptIcon
+        img: JavascriptIcon,
       },
       {
         name: 'React.js',
@@ -193,6 +187,11 @@ export const projects = [
       {
         name: 'Netlify',
         img: NetlifyIcon,
+      },
+      ,
+      {
+        name: 'Heroku',
+        img: HerokuIcon,
       },
     ],
   },

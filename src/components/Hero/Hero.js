@@ -161,9 +161,8 @@ const Hero = () => {
         <div className={classes.intro}>
           <h2 className={classes.introTitle}>Hello, I am Onur</h2>
           <article className={classes.introArticle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore nostrum ratione aliquam voluptatem sed nobis nemo vero
-            maxime ad necessitatibus non iure soluta dolorem fugit, illo obcaecati ipsa at impedit corruptin.necessitatibus non
-            iure soluta dolorem fugit, illo obcaecati ipsa at impedit corruptin.
+            I'm a fullstack developer with an eye for design. I have ~3 years of professional experience developing complex
+            products, especially focused on custom visualisations. Excited for future opportunities.
           </article>
           <div className={classes.linksContainer}>
             <div className={classes.link}>
