@@ -3,7 +3,9 @@ import AOS from 'aos';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 import { Portal } from 'react-portal';
 import { Transition } from 'react-transition-group';
+import { Link } from 'gatsby';
 
+import Email from '../../assets/svg/email.svg';
 import Triangle from '../../assets/svg/triangle_3d.svg';
 import ArrowDown from '../../assets/svg/arrow_down.svg';
 import GithubIcon from '../../assets/svg/github_icon.svg';
@@ -167,23 +169,26 @@ const Hero = () => {
           <div className={classes.linksContainer}>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={GithubIcon} alt='github link' />
-              <button className={classes.linkText} onClick={redirectToGitHub}>
+              <Link className={classes.linkText} to='https://github.com/ozcanonur'>
                 GitHub
-              </button>
+              </Link>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={LinkedinIcon} alt='linkedIn link' />
-              <button className={classes.linkText} onClick={redirectToLinkedin}>
+              <Link className={classes.linkText} to='https://www.linkedin.com/in/onur-ozcan-a5329b76/'>
                 LinkedIn
-              </button>
+              </Link>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={CVIcon} alt='cv link' />
               <button className={classes.linkText}>CV</button>
             </div>
-            <a href='mailto:ozcanonur10@gmail.com' className={classes.linkText}>
-              ozcanonur10@gmail.com
-            </a>
+            <div className={classes.link}>
+              <img className={classes.linkIcon} src={Email} alt='email' />
+              <a href='mailto:ozcanonur10@gmail.com' className={classes.linkText}>
+                ozcanonur10@gmail.com
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@ import JestIcon from '../assets/svg/jest_icon.svg';
 export const projects = [
   {
     title: 'PITDB',
-    description: `The Queen Mary University of London Bioinformatics Team was looking to build a web portal for researchers so that they can showcase their findings from PIT(proteomics informed by transcriptomics) experiments. A strong online platform was needed to support the publication, that's where I came in. PITDB includes many custom visualisation tailored for bioinformatics, such as confidence interval charts, interactive figures and the most challanging of all, a gene browser where users can browse through different transcripts to compare & contrast.`,
+    description: `The bioinformatics team of Queen Mary University of London was looking to build a web portal for researchers so that they can showcase their findings from PIT (proteomics informed by transcriptomics) experiments. A strong online platform was needed to support the publication, and that's where I came in. PITDB includes many visualisations custom tailored for bioinformatics, such as confidence interval charts, interactive figures and the most challanging of all, a gene browser where users can browse through different transcripts to compare & contrast.`,
     img: pitdbImg,
     websiteUrl: 'http://pitdb.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/PITDB',
@@ -68,7 +68,7 @@ export const projects = [
   },
   {
     title: 'Chemphoprolog',
-    description: `The initial project I was hired for at The Queen Mary University of London was to help analyse experimental phosphoproteomics data, discover novel findings and create a web portal for them. The most impressive part of the findings and the website turned out to be the pathway analysis, where users can browse through various novel kinase signaling pathways on the animated custom pathway visualisation and track the chain reactions with the help of explanations at every step.`,
+    description: `The initial project I was hired for at Queen Mary University of London was to help analyse experimental phosphoproteomics data, discover novel findings and create a web portal. The most impressive part of the findings and the website turned out to be the pathway analysis, where users can browse through various novel kinase signaling pathways on the animated custom pathway visualisation and track the chain reactions with the help of explanations at every step.`,
     img: chemphoprologImg,
     websiteUrl: 'http://chemphoprolog.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/chemphoprolog',
@@ -110,7 +110,7 @@ export const projects = [
   },
   {
     title: 'Discord',
-    description: `Throughout all my personal projects, this is my favorite. A clone of discord, an instant messaging and digital distribution platform designed for creating communities. Most gamers would know that discord is a part of our daily lives. The inspiration came from the desire to attempt to create something I use daily, along with learning real-time communication via sockets. It turned out to be quite challenging, especially the time commitment needed while I was busy with my full-time job. Most of the important functionality is intact, check it out!`,
+    description: `Throughout all my personal projects, this is my favorite. A clone of discord, an instant messaging and digital distribution platform designed for creating communities. Most gamers would know that discord is a part of our daily lives. The inspiration came from the desire to attempt to create something I use daily, along with learning real-time communication via sockets. It turned out to be quite challenging, especially with the time commitment needed while I was busy with my full-time job. Most of the important functionality is intact, check it out!`,
     img: discordImg,
     websiteUrl: 'http://ozcanonur-discord.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/discord-clone',
@@ -187,11 +187,6 @@ export const projects = [
       {
         name: 'Netlify',
         img: NetlifyIcon,
-      },
-      ,
-      {
-        name: 'Heroku',
-        img: HerokuIcon,
       },
     ],
   },

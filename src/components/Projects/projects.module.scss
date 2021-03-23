@@ -248,18 +248,19 @@
 .projectsFooter {
   display: flex;
   align-items: center;
-
   margin-top: 25rem;
   width: max-content;
 
-  & > button {
+  font-size: 4vw;
+  cursor: pointer;
+
+  & > a {
     background-color: transparent;
     color: white;
+    cursor: pointer;
+    border-bottom: 1px solid white;
+    text-decoration: none;
   }
-
-  font-size: 4vw;
-
-  cursor: pointer;
 
   @media only screen and (max-width: 800px) {
     font-size: 6vw;

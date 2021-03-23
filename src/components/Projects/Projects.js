@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
+import { Link } from 'gatsby';
 
 import Sphere from '../../assets/svg/sphere.svg';
 import SphereContainer from '../../assets/svg/sphere_container.svg';
@@ -131,25 +132,15 @@ const Projects = () => {
               </div>
               <div className={classes.projectLinksContainer}>
                 <div className={classes.projectLink}>
-                  <button
-                    className={classes.projectLinkText}
-                    onClick={() => {
-                      window.open(websiteUrl, '_blank');
-                    }}
-                  >
+                  <Link className={classes.projectLinkText} to={websiteUrl}>
                     View website
-                  </button>
+                  </Link>
                   <img className={classes.projectLinkIcon} src={UrlIcon} alt='view pitdb website' />
                 </div>
                 <div className={classes.projectLink}>
-                  <button
-                    className={classes.projectLinkText}
-                    onClick={() => {
-                      window.open(githubUrl, '_blank');
-                    }}
-                  >
+                  <Link className={classes.projectLinkText} to={githubUrl}>
                     View source
-                  </button>
+                  </Link>
                   <img className={classes.projectLinkIcon} src={GitHubIcon} alt='view pitdb source' />
                 </div>
               </div>
@@ -158,7 +149,7 @@ const Projects = () => {
         ))}
       </div>
       <div className={classes.projectsFooter}>
-        <button onClick={redirectToGitHub}>And more on GitHub</button>
+        <Link to='https://github.com/ozcanonur'>And more on GitHub</Link>
         <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' onClick={redirectToGitHub} />
       </div>
       <img
