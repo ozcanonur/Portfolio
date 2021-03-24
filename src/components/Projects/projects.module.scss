@@ -252,7 +252,6 @@
   width: max-content;
 
   font-size: 4vw;
-  cursor: pointer;
 
   & > a {
     background-color: transparent;
@@ -260,6 +259,10 @@
     cursor: pointer;
     border-bottom: 1px solid white;
     text-decoration: none;
+  }
+
+  & > span {
+    margin-right: 0.5ch;
   }
 
   @media only screen and (max-width: 800px) {

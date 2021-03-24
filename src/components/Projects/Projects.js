@@ -149,10 +149,13 @@ const Projects = () => {
         ))}
       </div>
       <div className={classes.projectsFooter}>
+        <span>And more on</span>
         <Link to='https://github.com/ozcanonur' target='_blank'>
-          And more on GitHub
+          GitHub
         </Link>
-        <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' onClick={redirectToGitHub} />
+        <Link to='https://github.com/ozcanonur' target='_blank' style={{ border: 'none' }}>
+          <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
+        </Link>
       </div>
       <img
         className={progressDone ? classes.sphereWithContainer : classes.sphereContainer}
