@@ -110,7 +110,7 @@ export const projects = [
   },
   {
     title: 'Discord',
-    description: `Throughout all my personal projects, this is my favorite. A clone of discord, an instant messaging and digital distribution platform designed for creating communities. Most gamers would know that discord is a part of our daily lives. The inspiration came from the desire to attempt to create something I use daily, along with learning real-time communication via sockets. It turned out to be quite challenging, especially with the time commitment needed while I was busy with my full-time job. Most of the important functionality is intact, check it out!`,
+    description: `Among all my personal projects, this is my favorite. A clone of discord, an instant messaging and digital distribution platform designed for creating communities. Most gamers would know that discord is a part of our daily lives. The inspiration came from the desire to attempt to create something I use daily, along with learning real-time communication via sockets. It turned out to be quite challenging, especially with the time commitment needed while I was busy with my full-time job. Most of the important functionality is intact, check it out!`,
     img: discordImg,
     websiteUrl: 'http://ozcanonur-discord.herokuapp.com/',
     githubUrl: 'https://github.com/ozcanonur/discord-clone',
