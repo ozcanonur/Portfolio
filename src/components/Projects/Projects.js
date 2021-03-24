@@ -132,13 +132,13 @@ const Projects = () => {
               </div>
               <div className={classes.projectLinksContainer}>
                 <div className={classes.projectLink}>
-                  <Link className={classes.projectLinkText} to={websiteUrl}>
+                  <Link className={classes.projectLinkText} to={websiteUrl} target='_blank'>
                     View website
                   </Link>
                   <img className={classes.projectLinkIcon} src={UrlIcon} alt='view pitdb website' />
                 </div>
                 <div className={classes.projectLink}>
-                  <Link className={classes.projectLinkText} to={githubUrl}>
+                  <Link className={classes.projectLinkText} to={githubUrl} target='_blank'>
                     View source
                   </Link>
                   <img className={classes.projectLinkIcon} src={GitHubIcon} alt='view pitdb source' />
@@ -149,7 +149,9 @@ const Projects = () => {
         ))}
       </div>
       <div className={classes.projectsFooter}>
-        <Link to='https://github.com/ozcanonur'>And more on GitHub</Link>
+        <Link to='https://github.com/ozcanonur' target='_blank'>
+          And more on GitHub
+        </Link>
         <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' onClick={redirectToGitHub} />
       </div>
       <img
