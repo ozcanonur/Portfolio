@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://www.onurozcan.io',
     title: 'Onur Ozcan',
+    titleTemplate: '%s · Fullstack Developer',
     description: 'Onur Ozcan personal portfolio website.',
     url: 'https://www.onurozcan.io',
   },

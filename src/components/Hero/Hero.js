@@ -5,6 +5,7 @@ import { Portal } from 'react-portal';
 import { Transition } from 'react-transition-group';
 import { Link } from 'gatsby';
 
+import CV from '../../assets/img/Onur_Ozcan_CV.pdf';
 import Email from '../../assets/svg/email.svg';
 import Triangle from '../../assets/svg/triangle_3d.svg';
 import ArrowDown from '../../assets/svg/arrow_down.svg';
@@ -12,7 +13,7 @@ import GithubIcon from '../../assets/svg/github_icon.svg';
 import LinkedinIcon from '../../assets/svg/linkedin_icon.svg';
 import TriangleContainer from '../../assets/svg/triangleContainer.svg';
 import TriangleWithContainer from '../../assets/svg/triangle_3d_with_container.svg';
-import CVIcon from '../../assets/svg/cv_icon.svg';
+import CVIcon from '../../assets/svg/cv_icon_2.svg';
 import DiagonalLines from '../../assets/svg/diagonal_lines.svg';
 import HomeIcon from '../../assets/svg/home.svg';
 import MenuIcon from '../../assets/svg/menu_icon.svg';
@@ -168,20 +169,22 @@ const Hero = () => {
           </article>
           <div className={classes.linksContainer}>
             <div className={classes.link}>
-              <img className={classes.linkIcon} src={GithubIcon} alt='github link' />
+              <img className={classes.linkIcon} src={GithubIcon} alt='github link' target='_blank' />
               <Link className={classes.linkText} to='https://github.com/ozcanonur'>
                 GitHub
               </Link>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={LinkedinIcon} alt='linkedIn link' />
-              <Link className={classes.linkText} to='https://www.linkedin.com/in/onur-ozcan-a5329b76/'>
+              <Link className={classes.linkText} to='https://www.linkedin.com/in/onur-ozcan-a5329b76/' target='_blank'>
                 LinkedIn
               </Link>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={CVIcon} alt='cv link' />
-              <button className={classes.linkText}>CV</button>
+              <a className={classes.linkText} href={CV} download>
+                CV
+              </a>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={Email} alt='email' />
