@@ -10,13 +10,13 @@ const query = graphql`
         defaultTitle: title
         titleTemplate
         defaultDescription: description
-        siteUrl: url
+        siteUrl
       }
     }
   }
 `;
 
-const SEO = ({ title, description, image, article }) => {
+const SEO = ({ title, description, article }) => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery(query);
 
