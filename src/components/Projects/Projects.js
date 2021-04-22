@@ -132,15 +132,15 @@ const Projects = () => {
               </div>
               <div className={classes.projectLinksContainer}>
                 <div className={classes.projectLink}>
-                  <Link className={classes.projectLinkText} to={websiteUrl} target='_blank'>
+                  <a className={classes.projectLinkText} href={websiteUrl} target='_blank'>
                     View website
-                  </Link>
+                  </a>
                   <img className={classes.projectLinkIcon} src={UrlIcon} alt='view pitdb website' />
                 </div>
                 <div className={classes.projectLink}>
-                  <Link className={classes.projectLinkText} to={githubUrl} target='_blank'>
+                  <a className={classes.projectLinkText} href={githubUrl} target='_blank'>
                     View source
-                  </Link>
+                  </a>
                   <img className={classes.projectLinkIcon} src={GitHubIcon} alt='view pitdb source' />
                 </div>
               </div>
@@ -150,12 +150,12 @@ const Projects = () => {
       </div>
       <div className={classes.projectsFooter}>
         <span>And more on</span>
-        <Link to='https://github.com/ozcanonur' target='_blank'>
+        <a href='https://github.com/ozcanonur' target='_blank'>
           GitHub
-        </Link>
-        <Link to='https://github.com/ozcanonur' target='_blank' style={{ border: 'none' }}>
+        </a>
+        <a href='https://github.com/ozcanonur' target='_blank' style={{ border: 'none' }}>
           <img className={classes.footerGitHub} src={GitHubIcon} alt='github link' />
-        </Link>
+        </a>
       </div>
       <img
         className={progressDone ? classes.sphereWithContainer : classes.sphereContainer}

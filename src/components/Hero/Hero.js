@@ -170,19 +170,19 @@ const Hero = () => {
           <div className={classes.linksContainer}>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={GithubIcon} alt='github link' target='_blank' />
-              <Link className={classes.linkText} to='https://github.com/ozcanonur'>
+              <a className={classes.linkText} href='https://github.com/ozcanonur'>
                 GitHub
-              </Link>
+              </a>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={LinkedinIcon} alt='linkedIn link' />
-              <Link className={classes.linkText} to='https://www.linkedin.com/in/onur-ozcan-a5329b76/' target='_blank'>
+              <a className={classes.linkText} href='https://www.linkedin.com/in/onur-ozcan-a5329b76/' target='_blank'>
                 LinkedIn
-              </Link>
+              </a>
             </div>
             <div className={classes.link}>
               <img className={classes.linkIcon} src={CVIcon} alt='cv link' />
-              <a className={classes.linkText} href={CV} download>
+              <a className={classes.linkText} href={CV} download='onur_ozcan_CV'>
                 CV
               </a>
             </div>
